@@ -2,6 +2,7 @@ package ecce.citasdev.deploy.utils;
 
 import android.location.Location;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -40,7 +41,8 @@ public class SensorDetails {
     }
 
     public String getDate() {
-        return _date.toString();
+        SimpleDateFormat ft = new SimpleDateFormat("E MM dd, yyyy hh:mm:ss");
+        return ft.format(_date).toString();
     }
 
 
@@ -65,6 +67,4 @@ public class SensorDetails {
         String info = "ID : " + _id + "; Lat: " + _location.getLatitude() + "; Lon: " + _location.getLongitude();
         return info;
     }
-
-
 }
