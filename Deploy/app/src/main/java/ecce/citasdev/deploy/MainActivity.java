@@ -1,215 +1,105 @@
 package ecce.citasdev.deploy;
 
-import android.Manifest;
-import android.app.ListActivity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
+import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
-
-import java.util.ArrayList;
-
+import com.google.android.gms.common.api.CommonStatusCodes;
 import ecce.citasdev.deploy.utils.SensorDetails;
 
-public class MainActivity extends ListActivity implements GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener {
-
-
-    ArrayList<SensorDetails> mSensorItems = new ArrayList<SensorDetails>();
-    ArrayAdapter<SensorDetails> adapter;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private static final String TAG = MainActivity.class.getSimpleName();
-    private static int PLAY_SERVICES_RESOLUTION_REQUEST = 1000;
+    private static final int RC_BARCODE_CAPTURE = 9001;
 
-    private Location mLastLocation;
-    private GoogleApiClient mGoogleApiClient;
-    private LocationRequest mLocationRequest;
+    private CompoundButton _cbAutoFocus, _cbUseFlash;
+    private TextView _tvStatusMessage, _tvQRValue;
+    private Button _bAcceptCode;
 
-    private TextView tvLocation;
-    private Button btnGetLocation, btnStartLocationUpdates;
+    private TextView _tvNodeAddr;
+    private EditText _etLatitude, _etLongitude, _etDeployed, _etTimestamp;
+    private LinearLayout _llSensorDetails;
 
-    private int mSensorId = 0;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
+    SensorDetails _sd;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        adapter = new ArrayAdapter<SensorDetails>(this, android.R.layout.simple_list_item_1, mSensorItems);
-        setListAdapter(adapter);
-        ListView itemList = (ListView) findViewById(android.R.id.list);
+        _tvStatusMessage = (TextView) findViewById(R.id.status_message);
 
+        _llSensorDetails = (LinearLayout) findViewById(R.id.sensor_details);
+        _tvNodeAddr = (TextView) findViewById(R.id.tv_node_addr);
+        _etLatitude = (EditText) findViewById(R.id.et_latitude);
+        _etLongitude = (EditText) findViewById(R.id.et_longitude);
+        _etDeployed = (EditText) findViewById(R.id.et_deployed);
+        _etTimestamp = (EditText) findViewById(R.id.et_timestamp);
 
-        itemList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                SensorDetails details = adapter.getItem(i);
-                Intent intent = new Intent(MainActivity.this, SensorNodesActivity.class);
+        _cbAutoFocus = (CompoundButton) findViewById(R.id.auto_focus);
+        _cbUseFlash = (CompoundButton) findViewById(R.id.use_flash);
 
-                intent.putExtra("ID", details.getId());
-                intent.putExtra("LATITUDE", details.getLatitude());
-                intent.putExtra("LONGITUDE", details.getLongitude());
-                intent.putExtra("DEPLOYED", details.getDeployed());
-                intent.putExtra("DATETIME", details.getDate());
+        _bAcceptCode = (Button) findViewById(R.id.accept_QR);
 
-                startActivity(intent);
-            }
-        });
-
-        tvLocation = (TextView) findViewById(R.id.tv_location);
-
-        btnGetLocation = (Button) findViewById(R.id.btn_getLocation);
-        btnStartLocationUpdates = (Button) findViewById(R.id.btn_startUpdates);
-
-        buildGoogleApiClient();
-
-        // Show location button click listener
-        btnGetLocation.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                displayLocation();
-            }
-        });
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-    }
-
-    protected synchronized void buildGoogleApiClient() {
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API).build();
+        _cbAutoFocus.setChecked(true);
+        _bAcceptCode.setEnabled(false);
+        findViewById(R.id.read_QR).setOnClickListener(this);
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == PLAY_SERVICES_RESOLUTION_REQUEST) {
-            Toast.makeText(this, "Requesting PERMISSION!!!", Toast.LENGTH_SHORT).show();
-            if (grantResults.length > 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED
-                    && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Permission granted!", Toast.LENGTH_SHORT).show();
+    public void onClick(View view) {
+        if (view.getId() == R.id.read_QR) {
+            // launch barcode activity.
+            Intent intent = new Intent(this, QRCaptureActivity.class);
+            intent.putExtra(QRCaptureActivity.AutoFocus, _cbAutoFocus.isChecked());
+            intent.putExtra(QRCaptureActivity.UseFlash, _cbUseFlash.isChecked());
+
+            startActivityForResult(intent, RC_BARCODE_CAPTURE);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == RC_BARCODE_CAPTURE) {
+            if (resultCode == CommonStatusCodes.SUCCESS) {
+                if (data != null) {
+                    SensorDetails _sd = data.getParcelableExtra("SDObject");
+                    _tvNodeAddr.setText(_sd.get_addr());
+                    _etLatitude.setText(String.valueOf(_sd.get_location().getLatitude()));
+                    _etLongitude.setText(String.valueOf(_sd.get_location().getLongitude()));
+                    _etDeployed.setText(_sd.get_deployed());
+                    _etTimestamp.setText(_sd.get_date());
+
+                    _llSensorDetails.setVisibility(View.VISIBLE);
+
+                    _bAcceptCode.setEnabled(true);
+                    _tvStatusMessage.setText(R.string.QR_success);
+                } else {
+                    _tvStatusMessage.setText(R.string.QR_failure);
+                    Log.d(TAG, "No barcode captured, intent data is null");
+                }
             } else {
-                Toast.makeText(this, "Permission denied!", Toast.LENGTH_SHORT).show();
+                _tvStatusMessage.setText("Invalid QR");
+                _llSensorDetails.setVisibility(View.INVISIBLE);
+                _bAcceptCode.setEnabled(false);
             }
         }
-    }
-
-    private void displayLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
-                PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(this, "Permission check!", Toast.LENGTH_SHORT).show();
-            String[] permissions = new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,
-                    Manifest.permission.ACCESS_FINE_LOCATION};
-            ActivityCompat.requestPermissions(this, permissions,
-                    PLAY_SERVICES_RESOLUTION_REQUEST);
-            return;
-        }
-
-        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-
-        if (mLastLocation != null) {
-            SensorDetails details = new SensorDetails(String.valueOf(mSensorId), true, mLastLocation);
-
-            Toast.makeText(this, "Updated Location", Toast.LENGTH_SHORT).show();
-            tvLocation.setText(details.getLatitude() + ", " + details.getLongitude());
-
-            mSensorId += 1;
-
-            mSensorItems.add(details);
-            adapter.notifyDataSetChanged();
-
-        } else {
-            tvLocation.setText("Enable location.");
+        else {
+            super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        if (mGoogleApiClient != null) {
-            mGoogleApiClient.connect();
-        }
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Main Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://ecce.citasdev.deploy/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction);
-    }
-
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-//        displayLocation();
-        tvLocation.setText("Connected. Press Get.");
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-        Log.i(TAG, "Connection suspended");
-        mGoogleApiClient.connect();
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Log.i(TAG, "Connection failed: ConnectionResult.getErrorCode() = "
-                + connectionResult.getErrorCode());
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Main Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://ecce.citasdev.deploy/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
+    public void confirmQR(View v){
+        Toast.makeText(this, "Scanning for RPI", Toast.LENGTH_SHORT).show();
     }
 }
+
