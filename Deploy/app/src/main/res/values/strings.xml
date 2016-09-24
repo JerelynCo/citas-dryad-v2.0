@@ -1,4 +1,19 @@
 <resources>
     <string name="app_name">Deploy</string>
     <string name="get_location">Get Location</string>
+    <string name="ok">OK</string>
+
+    <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
+    <string name="no_camera_permission">This application cannot run because it does not have the camera permission.  The application will now exit.</string>
+    <string name="low_storage_error">Face detector dependencies cannot be downloaded due to low device storage</string>
+
+    <string name="QR_header">Click &quot;Scan&quot; to start</string>
+    <string name="scan_QR">Scan</string>
+    <string name="accept_QR">Confirm code</string>
+    <string name="auto_focus">Auto Focus</string>
+    <string name="use_flash">Use Flash</string>
+
+    <string name="QR_success">QR code scan successful</string>
+    <string name="QR_failure">No QR code captured</string>
+    <string name="QR_error">"Error reading QR code: %1$s"</string>
 </resources>
