@@ -47,7 +47,7 @@ import ecce.citasdev.deploy.barcode.ui.camera.CameraSourcePreview;
 import ecce.citasdev.deploy.barcode.ui.camera.GraphicOverlay;
 import ecce.citasdev.deploy.utils.SensorDetails;
 
-public class QRCaptureActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
+public class   QRCaptureActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
     private static final String TAG = QRCaptureActivity.class.getSimpleName();
