@@ -30,6 +30,6 @@
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
         android:layout_gravity="center_horizontal"
-        android:onClick="showSinkNodes"
+        android:onClick="scanSinkNodes"
         android:nestedScrollingEnabled="false" />
 </LinearLayout>

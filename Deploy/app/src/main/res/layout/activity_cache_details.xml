@@ -174,30 +174,30 @@
             android:layout_alignStart="@+id/lbl_c_state"
             android:padding="5dp" />
 
-        <EditText
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/et_task"
+            android:id="@+id/tv_task"
             android:textSize="15dp"
             android:text="[task]"
             android:layout_alignTop="@+id/lbl_c_task"
             android:layout_alignParentEnd="true"
             android:padding="5dp" />
 
-        <EditText
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/et_batt"
+            android:id="@+id/tv_batt"
             android:textSize="15dp"
             android:text="[100%]"
             android:layout_alignTop="@+id/lbl_batt"
             android:layout_alignParentEnd="true"
             android:padding="5dp" />
 
-        <EditText
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/et_state"
+            android:id="@+id/tv_state"
             android:textSize="15dp"
             android:text="[state]"
             android:padding="5dp"
