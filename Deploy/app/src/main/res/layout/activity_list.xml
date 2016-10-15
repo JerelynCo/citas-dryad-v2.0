@@ -11,41 +11,14 @@
     tools:context=".CacheListActivity"
     android:weightSum="1">
 
-    <RelativeLayout
-        android:layout_width="332dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="0dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cache Address"
-            android:id="@+id/lbl_cacheNode"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:textStyle="bold"
-            android:textIsSelectable="false"
-            android:textSize="20dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="[groupaddress]"
-            android:id="@+id/tv_groupAddress"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:textSize="20dp" />
-    </RelativeLayout>
-
     <ListView
-        android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="291dp"
-        android:layout_gravity="center_horizontal"
+        android:id="@android:id/list"
+        android:layout_height="193dp"
         android:choiceMode="singleChoice"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp"
+        android:layout_weight="0.72" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -57,8 +30,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Last Location"
-            android:id="@+id/lbl_location"
+            android:text="Time scanned"
+            android:id="@+id/lbl_time_scanned"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
             android:textStyle="bold"
@@ -68,8 +41,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="[location]"
-            android:id="@+id/tv_location"
+            android:text="[time scanned]"
+            android:id="@+id/tv_time_scanned"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:textSize="15dp" />
@@ -78,14 +51,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get Location"
-        android:id="@+id/btn_getLocation"
-        android:layout_gravity="center_horizontal" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Send to Cache"
-        android:id="@+id/btn_sendToCache"
+        android:text="Rescan"
+        android:id="@+id/btn_rescan"
+        android:onClick="scanSinkNodes"
         android:layout_gravity="center_horizontal" />
 </LinearLayout>

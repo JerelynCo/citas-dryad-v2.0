@@ -7,8 +7,8 @@
     <string name="no_camera_permission">This application cannot run because it does not have the camera permission.  The application will now exit.</string>
     <string name="low_storage_error">Face detector dependencies cannot be downloaded due to low device storage</string>
 
-    <string name="QR_header">Click &quot;Scan&quot; to start</string>
-    <string name="scan_QR">Scan</string>
+    <string name="QR_header">Click &quot;Confirm Entries&quot; to save changes</string>
+    <string name="scan_QR">New Sensor Node</string>
     <string name="accept_QR">Confirm code</string>
     <string name="auto_focus">Auto Focus</string>
     <string name="use_flash">Use Flash</string>

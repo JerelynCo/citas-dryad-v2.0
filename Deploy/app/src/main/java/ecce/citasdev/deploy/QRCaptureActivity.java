@@ -47,7 +47,7 @@ import ecce.citasdev.deploy.barcode.ui.camera.CameraSourcePreview;
 import ecce.citasdev.deploy.barcode.ui.camera.GraphicOverlay;
 import ecce.citasdev.deploy.utils.SensorDetails;
 
-public class QRCaptureActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
+public class   QRCaptureActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
     private static final String TAG = QRCaptureActivity.class.getSimpleName();
@@ -389,8 +389,11 @@ public class QRCaptureActivity extends AppCompatActivity implements GoogleApiCli
                 Intent data = new Intent();
                 try {
                     JSONObject json_barcode = new JSONObject(barcode.displayValue);
-                    sd = new SensorDetails(json_barcode.getString("sn_addr"),
-                            json_barcode.getString("sn_site"), true, _lastLocation);
+                    sd = new SensorDetails(json_barcode.getString("id"),
+                            json_barcode.getString("name"), json_barcode.getString("site_name"),
+                            json_barcode.getString("state"),
+                            String.valueOf(_lastLocation.getLatitude()),
+                            String.valueOf(_lastLocation.getLongitude()));
                     data.putExtra("SDObject", sd);
                     setResult(CommonStatusCodes.SUCCESS, data);
                     finish();

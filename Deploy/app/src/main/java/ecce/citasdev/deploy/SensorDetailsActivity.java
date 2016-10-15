@@ -15,17 +15,17 @@ import android.widget.Toast;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import ecce.citasdev.deploy.utils.SensorDetails;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class SensorDetailsActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = SensorDetailsActivity.class.getSimpleName();
     private static final int RC_BARCODE_CAPTURE = 9001;
 
     private CompoundButton _cbAutoFocus, _cbUseFlash;
     private TextView _tvStatusMessage, _tvQRValue;
     private Button _bAcceptCode;
 
-    private TextView _tvNodeAddr;
-    private EditText _etLatitude, _etLongitude, _etDeployed, _etTimestamp;
+    private TextView _tvID, _tvBName;
+    private EditText _etLatitude, _etLongitude, _etState, _etPfBatt, _etBlBatt, _etTimestamp;
     private LinearLayout _llSensorDetails;
 
     SensorDetails _sd;
@@ -34,24 +34,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_sensor_details);
 
         _tvStatusMessage = (TextView) findViewById(R.id.status_message);
-
         _llSensorDetails = (LinearLayout) findViewById(R.id.sensor_details);
-        _tvNodeAddr = (TextView) findViewById(R.id.tv_node_addr);
+        _tvID = (TextView) findViewById(R.id.tv_id);
+        _tvBName = (TextView) findViewById(R.id.tv_bname);
         _etLatitude = (EditText) findViewById(R.id.et_latitude);
         _etLongitude = (EditText) findViewById(R.id.et_longitude);
-        _etDeployed = (EditText) findViewById(R.id.et_deployed);
+        _etState = (EditText) findViewById(R.id.et_state);
+        _etPfBatt = (EditText) findViewById(R.id.et_pf_batt);
+        _etBlBatt = (EditText) findViewById(R.id.et_bl_batt);
         _etTimestamp = (EditText) findViewById(R.id.et_timestamp);
-
         _cbAutoFocus = (CompoundButton) findViewById(R.id.auto_focus);
         _cbUseFlash = (CompoundButton) findViewById(R.id.use_flash);
-
         _bAcceptCode = (Button) findViewById(R.id.accept_QR);
 
         _cbAutoFocus.setChecked(true);
         _bAcceptCode.setEnabled(false);
+
+        _sd = getIntent().getExtras().getParcelable("SDObject");
+
+        _tvID.setText(_sd.get_id());
+        _tvBName.setText(_sd.get_broadcastName());
+        _etLatitude.setText(String.valueOf(_sd.get_lat()));
+        _etLongitude.setText(String.valueOf(_sd.get_lon()));
+        _etState.setText(_sd.get_state());
+        _etTimestamp.setText(_sd.get_dateUpdated());
+        _etBlBatt.setText(_sd.get_blBatt());
+        _etPfBatt.setText(_sd.get_pfBatt());
+
+        _llSensorDetails.setVisibility(View.VISIBLE);
+
         findViewById(R.id.read_QR).setOnClickListener(this);
     }
 
@@ -72,12 +86,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (requestCode == RC_BARCODE_CAPTURE) {
             if (resultCode == CommonStatusCodes.SUCCESS) {
                 if (data != null) {
-                    SensorDetails _sd = data.getParcelableExtra("SDObject");
-                    _tvNodeAddr.setText(_sd.get_addr());
-                    _etLatitude.setText(String.valueOf(_sd.get_location().getLatitude()));
-                    _etLongitude.setText(String.valueOf(_sd.get_location().getLongitude()));
-                    _etDeployed.setText(_sd.get_deployed());
-                    _etTimestamp.setText(_sd.get_date());
+                    _sd = data.getParcelableExtra("SDObject");
+                    _tvID.setText(_sd.get_id());
+
+                    _etLatitude.setText(String.valueOf(_sd.get_lat()));
+                    _etLongitude.setText(String.valueOf(_sd.get_lon()));
+                    _etState.setText(_sd.get_state());
+                    _etTimestamp.setText(_sd.get_dateUpdated());
 
                     _llSensorDetails.setVisibility(View.VISIBLE);
 

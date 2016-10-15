@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity">
+    tools:context=".SensorDetailsActivity">
 
     <TextView
         android:layout_width="match_parent"
@@ -19,14 +19,15 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:enabled="false" />
+        android:enabled="false"
+        android:textSize="18sp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/sensor_details"
         android:orientation="vertical"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp">
 
@@ -38,8 +39,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Node Address"
-                android:id="@+id/lbl_nodeAddress"
+                android:text="Sensor Node ID"
+                android:id="@+id/lbl_id"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true"
                 android:textSize="20dp"
@@ -48,11 +49,38 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="node_addr"
-                android:id="@+id/tv_node_addr"
+                android:text="[xxxx-xxxx]"
+                android:id="@+id/tv_id"
                 android:textSize="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Broadcast Name"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentStart="true"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_bname"
+                android:text="[xxxx-xxxx]"
+                android:textSize="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true" />
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -60,14 +88,15 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="16dp">
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:id="@+id/rl_geo">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Geolocation"
-                android:id="@+id/lbl_geolocation"
+                android:id="@+id/lbl_status"
                 android:textSize="20dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true"
@@ -77,9 +106,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Latitude"
-                android:id="@+id/lbl_latitude"
+                android:id="@+id/lbl_state"
                 android:textSize="15dp"
-                android:layout_below="@+id/lbl_geolocation"
+                android:layout_below="@+id/lbl_status"
                 android:layout_alignParentStart="true"
                 android:padding="5dp" />
 
@@ -87,10 +116,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Longitude"
-                android:id="@+id/lbl_longitude"
+                android:id="@+id/lbl_task"
                 android:textSize="15dp"
-                android:layout_below="@+id/lbl_latitude"
-                android:layout_alignStart="@+id/lbl_latitude"
+                android:layout_below="@+id/lbl_state"
+                android:layout_alignStart="@+id/lbl_state"
                 android:padding="5dp" />
 
             <EditText
@@ -109,7 +138,7 @@
                 android:id="@+id/et_longitude"
                 android:textSize="15dp"
                 android:text="[0000]"
-                android:layout_alignTop="@+id/lbl_longitude"
+                android:layout_alignTop="@+id/lbl_task"
                 android:layout_alignParentEnd="true"
                 android:padding="5dp" />
         </RelativeLayout>
@@ -118,13 +147,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="16dp">
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:id="@+id/rl_status">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Status"
-                android:id="@+id/lbl_status"
+                android:id="@+id/lbl_batt"
                 android:textSize="20dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true"
@@ -133,27 +164,27 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Deployed"
-                android:id="@+id/lbl_deployed"
+                android:text="State"
+                android:id="@+id/lbl_state"
                 android:textSize="15dp"
-                android:layout_below="@+id/lbl_status"
+                android:layout_below="@+id/lbl_batt"
                 android:layout_alignParentStart="true"
                 android:padding="5dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Timestamp"
+                android:text="Last Updated"
                 android:id="@+id/lbl_timestamp"
                 android:textSize="15dp"
-                android:layout_below="@+id/lbl_deployed"
-                android:layout_alignStart="@+id/lbl_deployed"
+                android:layout_below="@+id/lbl_state"
+                android:layout_alignStart="@+id/lbl_state"
                 android:padding="5dp" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/et_deployed"
+                android:id="@+id/et_state"
                 android:textSize="15dp"
                 android:text="[yes]"
                 android:layout_above="@+id/lbl_timestamp"
@@ -166,18 +197,77 @@
                 android:id="@+id/et_timestamp"
                 android:textSize="15dp"
                 android:text="[10121994 asdfsdfa]"
-                android:layout_alignBottom="@+id/lbl_timestamp"
-                android:layout_alignEnd="@+id/et_deployed"
-                android:padding="5dp" />
+                android:padding="5dp"
+                android:layout_below="@+id/et_state"
+                android:layout_alignParentEnd="true" />
         </RelativeLayout>
     </LinearLayout>
 
 
     <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:id="@+id/rl_batt">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Battery"
+            android:id="@+id/lbl_batt"
+            android:textSize="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PF Battery"
+            android:id="@+id/lbl_state"
+            android:textSize="15dp"
+            android:layout_below="@+id/lbl_batt"
+            android:layout_alignParentStart="true"
+            android:padding="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bluno Battery"
+            android:id="@+id/lbl_timestamp"
+            android:textSize="15dp"
+            android:layout_below="@+id/lbl_state"
+            android:layout_alignStart="@+id/lbl_state"
+            android:padding="5dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/et_pf_batt"
+            android:textSize="15dp"
+            android:text="[100%]"
+            android:layout_above="@+id/lbl_timestamp"
+            android:layout_alignParentEnd="true"
+            android:padding="5dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/et_bl_batt"
+            android:textSize="15dp"
+            android:text="[100%]"
+            android:layout_alignBottom="@+id/lbl_timestamp"
+            android:layout_alignEnd="@+id/et_pf_batt"
+            android:padding="5dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="259dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="30dp">
+        android:layout_marginTop="15dp">
 
         <CheckBox
             android:layout_width="wrap_content"
@@ -199,26 +289,23 @@
             android:checked="false" />
     </RelativeLayout>
 
-
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/scan_QR"
-        android:id="@+id/read_QR"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/accept_QR"
+        android:text="Confirm Entries"
         android:id="@+id/accept_QR"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
         android:onClick="confirmQR"
         android:nestedScrollingEnabled="false" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Sensor Node"
+        android:id="@+id/read_QR"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
 
 
 </LinearLayout>

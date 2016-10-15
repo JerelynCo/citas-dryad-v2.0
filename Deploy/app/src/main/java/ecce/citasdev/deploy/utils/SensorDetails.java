@@ -1,7 +1,5 @@
 package ecce.citasdev.deploy.utils;
 
-import android.hardware.Sensor;
-import android.location.Location;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -12,39 +10,113 @@ import java.util.Date;
  * Created by jerelynco on 9/18/16.
  */
 public class SensorDetails implements Parcelable {
-    private String _addr = "";
+    private String _id = "";
+    private String _broadcastName = "";
+    private String _state;
     private String _siteName = "";
-    private String _deployed;
-    private String _date;
-    private Location _location;
+    private String _pfBatt = "";
+    private String _blBatt = "";
+    private String _lat;
+    private String _lon;
+    private String _dateUpdated;
 
-    public String get_addr(){
-        return _addr;
+    public SensorDetails(String id, String bname, String siteName, String state, String lat, String lon){
+        this._id = id;
+        this._broadcastName = bname;
+        this._siteName = siteName;
+        this._state = state;
+        this._dateUpdated = dateAndFormatter();
+        this._lat = lat;
+        this._lon = lon;
     }
 
-    public String get_site_name(){
+    public SensorDetails(String id, String bName, String siteName, String state, String lat, String lon,
+                         String pfBat, String blBat, String dateUpdated){
+        this._id = id;
+        this._broadcastName = bName;
+        this._siteName = siteName;
+        this._state = state;
+        this._lat = lat;
+        this._lon = lon;
+        this._pfBatt = pfBat;
+        this._blBatt = blBat;
+        this._dateUpdated = dateUpdated;
+    }
+
+    public String get_dateUpdated() {
+        return _dateUpdated;
+    }
+
+    public void set_dateUpdated(String _dateUpdated) {
+        this._dateUpdated = _dateUpdated;
+    }
+
+
+    public String get_lat() {
+        return _lat;
+    }
+
+    public void set_lat(String _lat) {
+        this._lat = _lat;
+    }
+
+    public String get_lon() {
+        return _lon;
+    }
+
+    public void set_lon(String _lon) {
+        this._lon = _lon;
+    }
+
+
+    public String get_blBatt() {
+        return _blBatt;
+    }
+
+    public void set_blBatt(String _blBatt) {
+        this._blBatt = _blBatt;
+    }
+
+    public String get_pfBatt() {
+        return _pfBatt;
+    }
+
+    public void set_pfBatt(String _pfBatt) {
+        this._pfBatt = _pfBatt;
+    }
+
+    public String get_siteName() {
         return _siteName;
     }
 
-    public String get_deployed(){
-        return _deployed;
+    public void set_siteName(String _siteName) {
+        this._siteName = _siteName;
     }
 
-    public String get_date(){
-        return _date;
+    public String get_state() {
+        return _state;
     }
 
-    public Location get_location(){
-        return _location;
+    public void set_state(String _state) {
+        this._state = _state;
     }
 
-    public SensorDetails(String addr, String siteName, boolean deployed, Location location){
-        this._addr = addr;
-        this._siteName = siteName;
-        this._deployed = string_deployed(deployed);
-        this._location = location;
-        this._date = dateAndFormatter();
+    public String get_broadcastName() {
+        return _broadcastName;
     }
+
+    public void set_broadcastName(String _broadcastName) {
+        this._broadcastName = _broadcastName;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
 
     public String dateAndFormatter() {
         Date date = new Date();
@@ -69,19 +141,30 @@ public class SensorDetails implements Parcelable {
      **/
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(_addr);
+        parcel.writeString(_id);
+        parcel.writeString(_broadcastName);
         parcel.writeString(_siteName);
-        parcel.writeString(_deployed);
-        parcel.writeString(_date);
-        _location.writeToParcel(parcel, i);
+        parcel.writeString(_state);
+        parcel.writeString(_lat);
+        parcel.writeString(_lon);
+        parcel.writeString(_pfBatt);
+        parcel.writeString(_blBatt);
+        parcel.writeString(_dateUpdated);
+
     }
 
     private SensorDetails(Parcel in){
-        _addr = in.readString();
+        _id = in.readString();
+        _broadcastName = in.readString();
         _siteName = in.readString();
-        _deployed = in.readString();
-        _date = in.readString();
-        _location = Location.CREATOR.createFromParcel(in);
+        _state = in.readString();
+        _lat = in.readString();
+        _lon = in.readString();
+        _pfBatt = in.readString();
+        _blBatt = in.readString();
+        _dateUpdated = in.readString();
+
+
     }
 
     public static final Creator<SensorDetails> CREATOR = new Creator<SensorDetails>() {
@@ -95,4 +178,9 @@ public class SensorDetails implements Parcelable {
             return new SensorDetails[size];
         }
     };
+
+    @Override
+    public String toString(){
+        return _id;
+    }
 }

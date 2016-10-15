@@ -8,9 +8,13 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.CAMERA" />
 
+
     <application
+        android:name=".DeployApplication"
         android:allowBackup="true"
         android:fullBackupContent="false"
         android:hardwareAccelerated="true"
@@ -25,15 +29,26 @@
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="barcode" />
 
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".HomeActivity"
+            android:label="Deploy">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CacheListActivity" />
-        <activity android:name=".QRCaptureActivity"></activity>
+        <activity
+            android:name=".CacheListActivity"
+            android:label="Sink Nodes" />
+        <activity
+            android:name=".QRCaptureActivity"
+            android:label="Capture QR Code" />
+        <activity
+            android:name=".SensorDetailsActivity"
+            android:label="Sensor Nodes" />
+        <activity android:name=".CacheDetailsActivity" />
+        <activity android:name=".SensorListActivity"></activity>
     </application>
 
 </manifest>
