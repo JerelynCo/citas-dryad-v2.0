@@ -24,8 +24,8 @@ public class SensorDetailsActivity extends AppCompatActivity implements View.OnC
     private TextView _tvStatusMessage, _tvQRValue;
     private Button _bAcceptCode;
 
-    private TextView _tvID;
-    private EditText _etLatitude, _etLongitude, _etState, _etTimestamp;
+    private TextView _tvID, _tvBName;
+    private EditText _etLatitude, _etLongitude, _etState, _etPfBatt, _etBlBatt, _etTimestamp;
     private LinearLayout _llSensorDetails;
 
     SensorDetails _sd;
@@ -39,25 +39,30 @@ public class SensorDetailsActivity extends AppCompatActivity implements View.OnC
         _tvStatusMessage = (TextView) findViewById(R.id.status_message);
         _llSensorDetails = (LinearLayout) findViewById(R.id.sensor_details);
         _tvID = (TextView) findViewById(R.id.tv_id);
+        _tvBName = (TextView) findViewById(R.id.tv_bname);
         _etLatitude = (EditText) findViewById(R.id.et_latitude);
         _etLongitude = (EditText) findViewById(R.id.et_longitude);
-        _etState = (EditText) findViewById(R.id.et_pf_batt);
+        _etState = (EditText) findViewById(R.id.et_state);
+        _etPfBatt = (EditText) findViewById(R.id.et_pf_batt);
+        _etBlBatt = (EditText) findViewById(R.id.et_bl_batt);
         _etTimestamp = (EditText) findViewById(R.id.et_timestamp);
-
         _cbAutoFocus = (CompoundButton) findViewById(R.id.auto_focus);
         _cbUseFlash = (CompoundButton) findViewById(R.id.use_flash);
-
         _bAcceptCode = (Button) findViewById(R.id.accept_QR);
 
         _cbAutoFocus.setChecked(true);
         _bAcceptCode.setEnabled(false);
 
         _sd = getIntent().getExtras().getParcelable("SDObject");
+
         _tvID.setText(_sd.get_id());
-        _etLatitude.setText(String.valueOf(_sd.get_location().getLatitude()));
-        _etLongitude.setText(String.valueOf(_sd.get_location().getLongitude()));
+        _tvBName.setText(_sd.get_broadcastName());
+        _etLatitude.setText(String.valueOf(_sd.get_lat()));
+        _etLongitude.setText(String.valueOf(_sd.get_lon()));
         _etState.setText(_sd.get_state());
         _etTimestamp.setText(_sd.get_dateUpdated());
+        _etBlBatt.setText(_sd.get_blBatt());
+        _etPfBatt.setText(_sd.get_pfBatt());
 
         _llSensorDetails.setVisibility(View.VISIBLE);
 
@@ -83,8 +88,9 @@ public class SensorDetailsActivity extends AppCompatActivity implements View.OnC
                 if (data != null) {
                     _sd = data.getParcelableExtra("SDObject");
                     _tvID.setText(_sd.get_id());
-                    _etLatitude.setText(String.valueOf(_sd.get_location().getLatitude()));
-                    _etLongitude.setText(String.valueOf(_sd.get_location().getLongitude()));
+
+                    _etLatitude.setText(String.valueOf(_sd.get_lat()));
+                    _etLongitude.setText(String.valueOf(_sd.get_lon()));
                     _etState.setText(_sd.get_state());
                     _etTimestamp.setText(_sd.get_dateUpdated());
 

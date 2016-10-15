@@ -1,5 +1,6 @@
 package ecce.citasdev.deploy.utils;
 
+import android.app.Application;
 import android.location.Location;
 
 import java.text.SimpleDateFormat;

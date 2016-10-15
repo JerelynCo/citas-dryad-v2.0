@@ -389,8 +389,11 @@ public class   QRCaptureActivity extends AppCompatActivity implements GoogleApiC
                 Intent data = new Intent();
                 try {
                     JSONObject json_barcode = new JSONObject(barcode.displayValue);
-                    sd = new SensorDetails(json_barcode.getString("sn_addr"),
-                            json_barcode.getString("sn_site"), true, _lastLocation);
+                    sd = new SensorDetails(json_barcode.getString("id"),
+                            json_barcode.getString("name"), json_barcode.getString("site_name"),
+                            json_barcode.getString("state"),
+                            String.valueOf(_lastLocation.getLatitude()),
+                            String.valueOf(_lastLocation.getLongitude()));
                     data.putExtra("SDObject", sd);
                     setResult(CommonStatusCodes.SUCCESS, data);
                     finish();

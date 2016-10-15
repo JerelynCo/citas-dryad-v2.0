@@ -53,5 +53,6 @@
         android:layout_height="wrap_content"
         android:text="Rescan"
         android:id="@+id/btn_rescan"
+        android:onClick="scanSinkNodes"
         android:layout_gravity="center_horizontal" />
 </LinearLayout>

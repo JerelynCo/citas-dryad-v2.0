@@ -75,6 +75,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/tv_bname"
                 android:text="[xxxx-xxxx]"
                 android:textSize="20dp"
                 android:layout_alignParentEnd="true"
@@ -183,7 +184,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/et_pf_batt"
+                android:id="@+id/et_state"
                 android:textSize="15dp"
                 android:text="[yes]"
                 android:layout_above="@+id/lbl_timestamp"
@@ -196,9 +197,9 @@
                 android:id="@+id/et_timestamp"
                 android:textSize="15dp"
                 android:text="[10121994 asdfsdfa]"
-                android:layout_alignBottom="@+id/lbl_timestamp"
-                android:layout_alignEnd="@+id/et_pf_batt"
-                android:padding="5dp" />
+                android:padding="5dp"
+                android:layout_below="@+id/et_state"
+                android:layout_alignParentEnd="true" />
         </RelativeLayout>
     </LinearLayout>
 

@@ -154,15 +154,6 @@
             android:layout_alignParentStart="true"
             android:padding="5dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Task"
-            android:id="@+id/lbl_c_task"
-            android:textSize="15dp"
-            android:layout_below="@+id/lbl_c_state"
-            android:layout_alignStart="@+id/lbl_c_state"
-            android:padding="5dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -170,19 +161,11 @@
             android:text="Battery"
             android:id="@+id/lbl_batt"
             android:textSize="15dp"
-            android:layout_below="@+id/lbl_c_task"
+            android:layout_below="@+id/lbl_c_state"
             android:layout_alignStart="@+id/lbl_c_state"
             android:padding="5dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_task"
-            android:textSize="15dp"
-            android:text="[task]"
-            android:layout_alignTop="@+id/lbl_c_task"
-            android:layout_alignParentEnd="true"
-            android:padding="5dp" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -201,15 +184,16 @@
             android:textSize="15dp"
             android:text="[state]"
             android:padding="5dp"
-            android:layout_above="@+id/et_task"
+            android:layout_above="@+id/tv_batt"
             android:layout_alignParentEnd="true" />
     </RelativeLayout>
 
     <Button
-        android:text="Activate Node"
+        android:text="Deactivate Node"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btn_activate_node"
+        android:onClick="activateNode"
         android:layout_marginTop="30dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />

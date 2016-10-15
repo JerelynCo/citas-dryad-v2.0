@@ -1,6 +1,5 @@
 package ecce.citasdev.deploy.utils;
 
-import android.location.Location;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -15,24 +14,33 @@ public class SensorDetails implements Parcelable {
     private String _broadcastName = "";
     private String _state;
     private String _siteName = "";
-    private String _pfBat = "";
-    private String _blBat = "";
-    private Location _location;
+    private String _pfBatt = "";
+    private String _blBatt = "";
+    private String _lat;
+    private String _lon;
     private String _dateUpdated;
 
-    public SensorDetails(String addr, String siteName, boolean deployed){
-        this._id = addr;
+    public SensorDetails(String id, String bname, String siteName, String state, String lat, String lon){
+        this._id = id;
+        this._broadcastName = bname;
         this._siteName = siteName;
-        this._state = string_deployed(deployed);
+        this._state = state;
         this._dateUpdated = dateAndFormatter();
+        this._lat = lat;
+        this._lon = lon;
     }
 
-    public SensorDetails(String addr, String siteName, boolean deployed, Location location){
-        this._id = addr;
+    public SensorDetails(String id, String bName, String siteName, String state, String lat, String lon,
+                         String pfBat, String blBat, String dateUpdated){
+        this._id = id;
+        this._broadcastName = bName;
         this._siteName = siteName;
-        this._state = string_deployed(deployed);
-        this._location = location;
-        this._dateUpdated = dateAndFormatter();
+        this._state = state;
+        this._lat = lat;
+        this._lon = lon;
+        this._pfBatt = pfBat;
+        this._blBatt = blBat;
+        this._dateUpdated = dateUpdated;
     }
 
     public String get_dateUpdated() {
@@ -43,28 +51,38 @@ public class SensorDetails implements Parcelable {
         this._dateUpdated = _dateUpdated;
     }
 
-    public Location get_location() {
-        return _location;
+
+    public String get_lat() {
+        return _lat;
     }
 
-    public void set_location(Location _location) {
-        this._location = _location;
+    public void set_lat(String _lat) {
+        this._lat = _lat;
     }
 
-    public String get_blBat() {
-        return _blBat;
+    public String get_lon() {
+        return _lon;
     }
 
-    public void set_blBat(String _blBat) {
-        this._blBat = _blBat;
+    public void set_lon(String _lon) {
+        this._lon = _lon;
     }
 
-    public String get_pfBat() {
-        return _pfBat;
+
+    public String get_blBatt() {
+        return _blBatt;
     }
 
-    public void set_pfBat(String _pfBat) {
-        this._pfBat = _pfBat;
+    public void set_blBatt(String _blBatt) {
+        this._blBatt = _blBatt;
+    }
+
+    public String get_pfBatt() {
+        return _pfBatt;
+    }
+
+    public void set_pfBatt(String _pfBatt) {
+        this._pfBatt = _pfBatt;
     }
 
     public String get_siteName() {
@@ -124,18 +142,29 @@ public class SensorDetails implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(_id);
+        parcel.writeString(_broadcastName);
         parcel.writeString(_siteName);
         parcel.writeString(_state);
+        parcel.writeString(_lat);
+        parcel.writeString(_lon);
+        parcel.writeString(_pfBatt);
+        parcel.writeString(_blBatt);
         parcel.writeString(_dateUpdated);
-        _location.writeToParcel(parcel, i);
+
     }
 
     private SensorDetails(Parcel in){
         _id = in.readString();
+        _broadcastName = in.readString();
         _siteName = in.readString();
         _state = in.readString();
+        _lat = in.readString();
+        _lon = in.readString();
+        _pfBatt = in.readString();
+        _blBatt = in.readString();
         _dateUpdated = in.readString();
-        _location = Location.CREATOR.createFromParcel(in);
+
+
     }
 
     public static final Creator<SensorDetails> CREATOR = new Creator<SensorDetails>() {
