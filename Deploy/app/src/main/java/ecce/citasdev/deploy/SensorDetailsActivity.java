@@ -13,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
+
+import ecce.citasdev.deploy.utils.BTComm;
 import ecce.citasdev.deploy.utils.SensorDetails;
 
 public class SensorDetailsActivity extends AppCompatActivity implements View.OnClickListener{
@@ -22,19 +24,23 @@ public class SensorDetailsActivity extends AppCompatActivity implements View.OnC
 
     private CompoundButton _cbAutoFocus, _cbUseFlash;
     private TextView _tvStatusMessage, _tvQRValue;
-    private Button _bAcceptCode;
+    private Button _bSendToCache;
 
     private TextView _tvID, _tvBName;
     private EditText _etLatitude, _etLongitude, _etState, _etPfBatt, _etBlBatt, _etTimestamp;
     private LinearLayout _llSensorDetails;
 
     SensorDetails _sd;
+    DeployApplication _dpApp;
+    Thread _tComm;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor_details);
+
+        _dpApp = (DeployApplication) getApplicationContext();
 
         _tvStatusMessage = (TextView) findViewById(R.id.status_message);
         _llSensorDetails = (LinearLayout) findViewById(R.id.sensor_details);
@@ -48,10 +54,9 @@ public class SensorDetailsActivity extends AppCompatActivity implements View.OnC
         _etTimestamp = (EditText) findViewById(R.id.et_timestamp);
         _cbAutoFocus = (CompoundButton) findViewById(R.id.auto_focus);
         _cbUseFlash = (CompoundButton) findViewById(R.id.use_flash);
-        _bAcceptCode = (Button) findViewById(R.id.accept_QR);
+        _bSendToCache = (Button) findViewById(R.id.send_to_cache);
 
         _cbAutoFocus.setChecked(true);
-        _bAcceptCode.setEnabled(false);
 
         _sd = getIntent().getExtras().getParcelable("SDObject");
 
@@ -94,10 +99,15 @@ public class SensorDetailsActivity extends AppCompatActivity implements View.OnC
                     _etState.setText(_sd.get_state());
                     _etTimestamp.setText(_sd.get_dateUpdated());
 
+                    _etPfBatt.setText("To be set");
+                    _etBlBatt.setText("To be set");
+
                     _llSensorDetails.setVisibility(View.VISIBLE);
 
-                    _bAcceptCode.setEnabled(true);
+                    _bSendToCache.setEnabled(true);
                     _tvStatusMessage.setText(R.string.QR_success);
+
+
                 } else {
                     _tvStatusMessage.setText(R.string.QR_failure);
                     Log.d(TAG, "No barcode captured, intent data is null");
@@ -105,7 +115,7 @@ public class SensorDetailsActivity extends AppCompatActivity implements View.OnC
             } else {
                 _tvStatusMessage.setText("Invalid QR");
                 _llSensorDetails.setVisibility(View.INVISIBLE);
-                _bAcceptCode.setEnabled(false);
+                _bSendToCache.setEnabled(false);
             }
         }
         else {
@@ -113,8 +123,23 @@ public class SensorDetailsActivity extends AppCompatActivity implements View.OnC
         }
     }
 
-    public void confirmQR(View v){
-        Toast.makeText(this, "Scanning for RPI", Toast.LENGTH_SHORT).show();
+    public void sendToCache(View v){
+        Toast.makeText(this, "Sending data to cache..", Toast.LENGTH_SHORT).show();
+        BTComm btComm = new BTComm("QQRSN:id="+_sd.get_id()+",name="+_sd.get_broadcastName()
+                +",state="+_sd.get_state()+",site_name="+_sd.get_siteName()+",lat="+_sd.get_lat()
+                +",lon="+_sd.get_lon()+",updated="+_sd.get_dateUpdated()+";",
+                _dpApp.get_btDevice(), TAG);
+        _tComm = new Thread(btComm);
+        _tComm.start();
+        try {
+            _tComm.join();
+            Intent intent = new Intent(SensorDetailsActivity.this, CacheListActivity.class);
+            startActivity(intent);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
 }
 
