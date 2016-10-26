@@ -48,11 +48,11 @@
             android:textSize="15dp" />
     </RelativeLayout>
 
-<!--    <Button
-        android:layout_width="wrap_content"
+    <Button
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Rescan"
-        android:id="@+id/btn_rescan"
-        android:onClick="scanSinkNodes"
-        android:layout_gravity="center_horizontal" />-->
+        android:text="Add Sensor Node"
+        android:onClick="addNode"
+        android:id="@+id/btn_new_node"
+        android:layout_gravity="center_horizontal"/>
 </LinearLayout>

@@ -7,8 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import ecce.citasdev.deploy.utils.BTComm;
@@ -36,6 +39,9 @@ public class CacheListActivity extends ListActivity {
         _dpApp = (DeployApplication) getApplicationContext();
 
         tvTimeScanned.setText(getIntent().getStringExtra("TIMESTAMP"));
+
+        Button btnAddNode = (Button) findViewById(R.id.btn_new_node);
+        btnAddNode.setVisibility(View.INVISIBLE);
 
         // transforming bd_list to string for readability
         final ArrayList<BluetoothDevice> bd_list = getIntent().getExtras().getParcelableArrayList("BD_DEVICES");
@@ -66,6 +72,7 @@ public class CacheListActivity extends ListActivity {
                         try {
                             // waiting for the thread to end
                             _tComm.join();
+//                            _dpApp.populateSensorItemsList(_btComm.get_sResponseMsg());
                             Intent intent = new Intent(CacheListActivity.this, CacheDetailsActivity.class);
                             intent.putExtra("RESPONSE", _btComm.get_sResponseMsg());
                             startActivity(intent);
