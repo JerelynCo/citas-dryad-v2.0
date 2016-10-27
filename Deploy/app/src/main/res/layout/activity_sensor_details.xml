@@ -96,7 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Geolocation"
-                android:id="@+id/lbl_status"
+                android:id="@+id/lbl_geo"
                 android:textSize="20dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true"
@@ -106,9 +106,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Latitude"
-                android:id="@+id/lbl_state"
+                android:id="@+id/lbl_latitude"
                 android:textSize="15dp"
-                android:layout_below="@+id/lbl_status"
+                android:layout_below="@+id/lbl_geo"
                 android:layout_alignParentStart="true"
                 android:padding="5dp" />
 
@@ -118,8 +118,8 @@
                 android:text="Longitude"
                 android:id="@+id/lbl_task"
                 android:textSize="15dp"
-                android:layout_below="@+id/lbl_state"
-                android:layout_alignStart="@+id/lbl_state"
+                android:layout_below="@+id/lbl_latitude"
+                android:layout_alignStart="@+id/lbl_latitude"
                 android:padding="5dp" />
 
             <EditText
@@ -155,7 +155,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Status"
-                android:id="@+id/lbl_batt"
+                android:id="@+id/lbl_status"
                 android:textSize="20dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true"
@@ -167,9 +167,9 @@
                 android:text="State"
                 android:id="@+id/lbl_state"
                 android:textSize="15dp"
-                android:layout_below="@+id/lbl_batt"
+                android:layout_below="@+id/lbl_status"
                 android:layout_alignParentStart="true"
-                android:padding="5dp" />
+                android:padding="5dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -201,109 +201,73 @@
                 android:layout_below="@+id/et_state"
                 android:layout_alignParentEnd="true" />
         </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:id="@+id/rl_batt">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Battery"
+                android:id="@+id/lbl_batt"
+                android:textSize="20dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PF Battery"
+                android:id="@+id/lbl_pf_battery"
+                android:textSize="15dp"
+                android:layout_below="@+id/lbl_batt"
+                android:layout_alignParentStart="true"
+                android:padding="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bluno Battery"
+                android:id="@+id/lbl_bl_battery"
+                android:textSize="15dp"
+                android:layout_below="@+id/lbl_pf_battery"
+                android:layout_alignStart="@+id/lbl_pf_battery"
+                android:padding="5dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/et_pf_batt"
+                android:textSize="15dp"
+                android:text="[100%]"
+                android:layout_above="@+id/lbl_bl_battery"
+                android:layout_alignParentEnd="true"
+                android:padding="5dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/et_bl_batt"
+                android:textSize="15dp"
+                android:text="[100%]"
+                android:layout_alignBottom="@+id/lbl_bl_battery"
+                android:layout_alignEnd="@+id/et_pf_batt"
+                android:padding="5dp" />
+        </RelativeLayout>
     </LinearLayout>
 
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:id="@+id/rl_batt">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Battery"
-            android:id="@+id/lbl_batt"
-            android:textSize="20dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="PF Battery"
-            android:id="@+id/lbl_state"
-            android:textSize="15dp"
-            android:layout_below="@+id/lbl_batt"
-            android:layout_alignParentStart="true"
-            android:padding="5dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bluno Battery"
-            android:id="@+id/lbl_timestamp"
-            android:textSize="15dp"
-            android:layout_below="@+id/lbl_state"
-            android:layout_alignStart="@+id/lbl_state"
-            android:padding="5dp" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/et_pf_batt"
-            android:textSize="15dp"
-            android:text="[100%]"
-            android:layout_above="@+id/lbl_timestamp"
-            android:layout_alignParentEnd="true"
-            android:padding="5dp" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/et_bl_batt"
-            android:textSize="15dp"
-            android:text="[100%]"
-            android:layout_alignBottom="@+id/lbl_timestamp"
-            android:layout_alignEnd="@+id/et_pf_batt"
-            android:padding="5dp" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="259dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dp">
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/auto_focus"
-            android:id="@+id/auto_focus"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:checked="false" />
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/use_flash"
-            android:id="@+id/use_flash"
-            android:layout_alignTop="@+id/auto_focus"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:checked="false" />
-    </RelativeLayout>
-
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Confirm Entries"
-        android:id="@+id/accept_QR"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="center_horizontal"
-        android:onClick="confirmQR"
-        android:nestedScrollingEnabled="false" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add Sensor Node"
-        android:id="@+id/read_QR"
+        android:text="Delete"
+        android:id="@+id/delete"
+        android:onClick="deleteNode"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
 

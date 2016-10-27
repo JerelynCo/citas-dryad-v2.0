@@ -36,6 +36,7 @@ public class CacheDetailsActivity extends AppCompatActivity {
     Thread _tComm;
 
     Button btn_activate;
+    TextView _tv_state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +49,9 @@ public class CacheDetailsActivity extends AppCompatActivity {
         TextView _tv_version = (TextView) findViewById(R.id.tv_version);
         EditText _et_latitude = (EditText) findViewById(R.id.et_latitude);
         EditText _et_longitude = (EditText) findViewById(R.id.et_longitude);
-        TextView _tv_state = (TextView) findViewById(R.id.tv_state);
         TextView _tv_batt = (TextView) findViewById(R.id.tv_batt);
         btn_activate = (Button) findViewById(R.id.btn_activate_node);
+        _tv_state = (TextView) findViewById(R.id.tv_state);
 
         _cacheNode = _dpApp.get_btDevice();
         _details = getIntent().getStringExtra("RESPONSE");
@@ -74,10 +75,9 @@ public class CacheDetailsActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
 
-    public void displaySensors(View v) throws InterruptedException {
+    public void displaySensors(View v) throws InterruptedException, JSONException {
         _btComm = new BTComm("QSLST", _dpApp.get_btDevice(), TAG);
         _tComm = new Thread(_btComm);
         _tComm.start();
@@ -88,8 +88,9 @@ public class CacheDetailsActivity extends AppCompatActivity {
         Date date = new Date();
         SimpleDateFormat ft = new SimpleDateFormat("E MM dd, yyyy hh:mm:ss");
 
+        _dpApp.populateSensorItemsList(_btComm.get_sResponseMsg());
+
         Intent intent = new Intent(this, SensorListActivity.class);
-        intent.putExtra("SENSORS", _btComm.get_sResponseMsg());
         intent.putExtra("TIMESTAMP", ft.format(date).toString());
         startActivity(intent);
     }
@@ -106,16 +107,17 @@ public class CacheDetailsActivity extends AppCompatActivity {
         _tComm.start();
         _tComm.join();
 
-        // TODO Accompany updated cache node details for response?
         Log.i(TAG, _btComm.get_sResponseMsg());
 
         if(_btComm.get_sResponseMsg().equals("OK")){
             if(_isNodeActivated){
                 _isNodeActivated = false;
+                _tv_state.setText("Deactivated");
                 btn_activate.setText("Activate Node");
             }
             else{
                 _isNodeActivated = true;
+                _tv_state.setText("Activated");
                 btn_activate.setText("Deactivate Node");
             }
         }

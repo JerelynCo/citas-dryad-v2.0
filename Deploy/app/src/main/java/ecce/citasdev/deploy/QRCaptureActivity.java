@@ -104,10 +104,6 @@ public class   QRCaptureActivity extends AppCompatActivity implements GoogleApiC
 
         gestureDetector = new GestureDetector(this, new CaptureGestureListener());
         scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
-
-        Snackbar.make(mGraphicOverlay, "Tap to capture. Pinch/Stretch to zoom",
-                Snackbar.LENGTH_LONG)
-                .show();
     }
 
     protected synchronized void buildGoogleApiClient() {

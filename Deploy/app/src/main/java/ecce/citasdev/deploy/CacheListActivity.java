@@ -7,8 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import ecce.citasdev.deploy.utils.BTComm;
@@ -17,14 +20,14 @@ import ecce.citasdev.deploy.utils.BTComm;
 public class CacheListActivity extends ListActivity {
 
     private static final String TAG = CacheListActivity.class.getSimpleName();
-    Thread _tComm;
 
-    private ArrayList<String> _alCacheItems = new ArrayList<String>();
+    private ArrayList<String> _alCacheItems = new ArrayList<>();
     private ArrayAdapter<String> _cacheAdapter;
 
     private TextView tvTimeScanned ;
 
     DeployApplication _dpApp;
+    Thread _tComm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,14 +40,19 @@ public class CacheListActivity extends ListActivity {
 
         tvTimeScanned.setText(getIntent().getStringExtra("TIMESTAMP"));
 
+        Button btnAddNode = (Button) findViewById(R.id.btn_new_node);
+        btnAddNode.setVisibility(View.INVISIBLE);
+
         // transforming bd_list to string for readability
         final ArrayList<BluetoothDevice> bd_list = getIntent().getExtras().getParcelableArrayList("BD_DEVICES");
-        for(BluetoothDevice bd: bd_list){
-            _alCacheItems.add(bd.getName() + ": " + bd.getAddress());
+        if(bd_list != null) {
+            for (BluetoothDevice bd : bd_list) {
+                _alCacheItems.add(bd.getName() + ": " + bd.getAddress());
+            }
         }
 
         // setting up list adapter
-        _cacheAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, _alCacheItems);
+        _cacheAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, _alCacheItems);
         setListAdapter(_cacheAdapter);
         ListView cacheList = (ListView) findViewById(android.R.id.list);
 
@@ -65,7 +73,7 @@ public class CacheListActivity extends ListActivity {
                             // waiting for the thread to end
                             _tComm.join();
                             Intent intent = new Intent(CacheListActivity.this, CacheDetailsActivity.class);
-                            intent.putExtra("RESPONSE", _btComm.get_sResponseMsg());
+                            intent.putExtra("RESPONSE",_btComm.get_sResponseMsg());
                             startActivity(intent);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -74,6 +82,5 @@ public class CacheListActivity extends ListActivity {
                 }
             }
         });
-
     }
 }
