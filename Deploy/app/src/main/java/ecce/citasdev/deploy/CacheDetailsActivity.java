@@ -77,7 +77,7 @@ public class CacheDetailsActivity extends AppCompatActivity {
         }
     }
 
-    public void displaySensors(View v) throws InterruptedException {
+    public void displaySensors(View v) throws InterruptedException, JSONException {
         _btComm = new BTComm("QSLST", _dpApp.get_btDevice(), TAG);
         _tComm = new Thread(_btComm);
         _tComm.start();
@@ -88,8 +88,9 @@ public class CacheDetailsActivity extends AppCompatActivity {
         Date date = new Date();
         SimpleDateFormat ft = new SimpleDateFormat("E MM dd, yyyy hh:mm:ss");
 
+        _dpApp.populateSensorItemsList(_btComm.get_sResponseMsg());
+
         Intent intent = new Intent(this, SensorListActivity.class);
-        intent.putExtra("SENSORS", _btComm.get_sResponseMsg());
         intent.putExtra("TIMESTAMP", ft.format(date).toString());
         startActivity(intent);
     }

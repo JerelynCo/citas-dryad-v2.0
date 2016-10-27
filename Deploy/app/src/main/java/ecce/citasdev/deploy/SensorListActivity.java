@@ -31,9 +31,6 @@ public class SensorListActivity extends ListActivity {
     private ArrayList<SensorDetails> _sensorItems = new ArrayList<SensorDetails>();
     private ArrayAdapter<SensorDetails> _sensorAdapter;
 
-    private String _details;
-    private JSONObject _jsonDetails;
-
     DeployApplication _dpApp;
 
 
@@ -49,24 +46,13 @@ public class SensorListActivity extends ListActivity {
         btnAddNode.setVisibility(View.VISIBLE);
 
         _dpApp = (DeployApplication) getApplicationContext();
+        _sensorItems = _dpApp.get_sensorItems();
 
+        Log.i(TAG, _sensorItems.get(0).get_id());
         _sensorAdapter = new ArrayAdapter<SensorDetails>(this, android.R.layout.simple_list_item_1, _sensorItems);
         setListAdapter(_sensorAdapter);
         ListView sensorList = (ListView) findViewById(android.R.id.list);
 
-        try {
-            //TODO put details in application context
-            _details = getIntent().getStringExtra("SENSORS");
-            if(!_details.equals("")) {
-                _jsonDetails = new JSONObject(_details);
-                JSONArray jsArray = _jsonDetails.getJSONArray("sensor_id");
-                addNewSensorItem(jsArray);
-            }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        Log.i(TAG, _details);
 
         sensorList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -77,20 +63,6 @@ public class SensorListActivity extends ListActivity {
                 startActivity(intent);
             }
         });
-    }
-
-    private void addNewSensorItem(JSONArray jsArray) throws JSONException {
-        JSONObject jObject;
-        for (int i = 0; i < jsArray.length(); i++) {
-            jObject = jsArray.getJSONObject(i);
-            SensorDetails sd_entry = new SensorDetails(
-                    jObject.getString("id"), jObject.getString("name"),
-                    jObject.getString("site_name"), jObject.getString("state"),
-                    jObject.getString("lat"), jObject.getString("lon"),
-                    jObject.getString("pf_batt"), jObject.getString("bl_batt"),
-                    jObject.getString("date_updated"));
-            _sensorItems.add(sd_entry);
-        }
     }
 
     public void addNode(View v) {
@@ -115,7 +87,8 @@ public class SensorListActivity extends ListActivity {
                     tComm.start();
                     try {
                         tComm.join();
-                        _sensorItems.add(newSd);
+                        _dpApp.addSensorItem(newSd);
+                        _sensorItems = _dpApp.get_sensorItems();
                         _sensorAdapter.notifyDataSetChanged();
 
                     } catch (InterruptedException e) {

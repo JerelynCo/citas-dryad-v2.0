@@ -72,9 +72,8 @@ public class CacheListActivity extends ListActivity {
                         try {
                             // waiting for the thread to end
                             _tComm.join();
-//                            _dpApp.populateSensorItemsList(_btComm.get_sResponseMsg());
                             Intent intent = new Intent(CacheListActivity.this, CacheDetailsActivity.class);
-                            intent.putExtra("RESPONSE", _btComm.get_sResponseMsg());
+                            intent.putExtra("RESPONSE",_btComm.get_sResponseMsg());
                             startActivity(intent);
                         } catch (InterruptedException e) {
                             e.printStackTrace();

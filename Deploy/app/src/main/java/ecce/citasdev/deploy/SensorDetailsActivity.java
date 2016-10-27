@@ -66,9 +66,8 @@ public class SensorDetailsActivity extends AppCompatActivity {
         tComm.start();
         try {
             tComm.join();
+            _dpApp.removeSensorItem(_sd.get_id());
             Intent intent = new Intent(SensorDetailsActivity.this, SensorListActivity.class);
-            intent.putExtra("DELETE", _sd.get_id());
-            intent.putExtra("SENSORS", "");
             startActivity(intent);
         } catch (InterruptedException e) {
             e.printStackTrace();
