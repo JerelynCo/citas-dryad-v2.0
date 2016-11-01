@@ -100,7 +100,14 @@ class Parrot():
 
 	def start(self): 
 		print("Attempting to connect to {} [{}]".format(self.name, self.device.addr))
-		p = Peripheral(self.device, "random")
+		p = None
+		while p is None:
+			try:
+				p = Peripheral(self.device, "random")
+			except:
+				print("Caught exception.. Retrying connection..")
+				pass
+
 		p.setDelegate(PeripheralDelegate())	
 		print("Connected..")	
 		
