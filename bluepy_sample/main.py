@@ -12,10 +12,13 @@ def main():
 		print("Device %s (%s), RSSI=%d dB" % (device.addr, device.addrType, device.rssi))
 		for (adtype, desc, value) in device.getScanData():
 			if "Flower power" in value:
+				print("PF match..")
 				pf_bname = value
 				isFlowerPower = True
 		if device.connectable and isFlowerPower:
 			pf = Parrot(device, pf_bname)	
 			pf.start()
+		else:
+			print("No nearby Parrot Flower..")
 
 main()
