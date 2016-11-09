@@ -95,77 +95,80 @@ class Parrot():
 	def __init__(self, device, name):
 		self.name = name
 		self.device = device		
-		
+	
+	# write to characteristic a value		
 	def write(self, char, val):
 		char.write(str.encode(val))
 
+	# returns whether parrot flower is the new version or not
+	def isNewFirmware(self, firmware_version):
+		new_firmware_version = '1.1.0'
+		ver_number = firmware_version.decode("utf-8").split("_")[1].split("-")[1]
+		return ver_number == new_firmware_version
+
+	# returns dictionary of sensor readings from parrot flower 
 	def read_sensors(self, live_service, battery_service, isNewFirmware):
 		timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 		battery_level_ch = battery_service.getCharacteristics(UUID(CONTROLS["BATTERY_LEVEL"]))[0]
 		battery_level = 0
 		
 		try:
+			# conversion from byte to decimal
 			battery_level = ord(battery_level_ch.read())
 		except Exception as err:
 			traceback.print_tb(err.__traceback__)
 
 		if isNewFirmware:
+			# format of reading for new version	
 			reading = {"TIMESTAMP":timestamp, "SUNLIGHT":None, "SOIL_EC": None, "SOIL_TEMP": None, "AIR_TEMP": None, "VWC": None, "CAL_VWC":None, "CAL_AIR_TEMP":None, "CAL_DLI":None, "CAL_EA":None, "CAL_ECB": None, "CAL_EC_POROUS":None, "BATTERY": battery_level}
-			
+			# iterate over the calibrated sensors characteristics
 			for key, val in CAL_SENSORS.items():
 				char = live_service.getCharacteristics(UUID(val))[0]	
 				if char.supportsRead(): 
 					if key == "SUNLIGHT":
-						val = unpack_U16(char.read())
-						reading[key] = conv_light(val)
+						reading[key] = conv_light(unpack_U16(char.read()))
 					elif key == "SOIL_EC":
-						val = unpack_U16(char.read())
-						reading[key] = conv_ec(val)
+						reading[key] = conv_ec(unpack_U16(char.read()))
 					elif key in ["AIR_TEMP", "SOIL_TEMP"]:
-						val = unpack_U16(char.read())
-						reading[key] = conv_temp(val)
+						reading[key] = conv_temp(unpack_U16(char.read()))
 					elif key == "VWC":
-						val = unpack_U16(char.read())
-						reading[key] = conv_moisture(val)
+						reading[key] = conv_moisture(unpack_U16(char.read()))
 					else:
 						reading[key] = decode_float32(char.read())
 			
 		else:	
-			reading = {"TIMESTAMP":timestamp, "SUNLIGHT":None, "SOIL_EC":None, "AIR_TEMP": None, "SOIL_TEMP": None, "SOIL_MOISTURE": None, "BATTERY": battery_level}
-			
+			# format of reading for old version
+			reading = {"TIMESTAMP":timestamp, "SUNLIGHT":None, "SOIL_EC":None, "AIR_TEMP": None, "SOIL_TEMP": None, "VWC": None, "BATTERY": battery_level}
+			# iterate over the old characteristics
 			for key, val in SENSORS.items():
 				char = live_service.getCharacteristics(UUID(val))[0]	
 				if char.supportsRead(): 
-					val = unpack_U16(char.read())
 					if key == "SUNLIGHT":
-						reading[key] = conv_light(val)
+						reading[key] = conv_light(unpack_U16(char.read()))
 					elif key == "SOIL_EC":
-						reading[key] = conv_ec(val)
-					elif key == "AIR_TEMP":
-						reading[key] = conv_temp(val)
-					elif key == "SOIL_TEMP":
-						reading[key] = conv_temp(val)
-					elif key == "SOIL_MOISTURE":
-						reading[key] = conv_moisture(val)
+						reading[key] = conv_ec(unpack_U16(char.read()))
+					elif key in ["AIR_TEMP", "SOIL_TEMP"]:
+						reading[key] = conv_temp(unpack_U16(char.read()))
+					elif key == "VWC":
+						reading[key] = conv_moisture(unpack_U16(char.read()))
 		return reading	
-
-	def isNewFirmware(self, firmware_version):
-		new_firmware_version = '1.1.0'
-		ver_number = firmware_version.decode("utf-8").split("_")[1].split("-")[1]
-		return ver_number == new_firmware_version
 
 	# TODO: Implement stop method
 	def start(self): 
 		print("Attempting to connect to {} [{}]".format(self.name, self.device.addr))
+		
+		# variable to hold peripheral device
 		p = None
+		
+		# retry connection until connected
 		while p is None:
 			try:
 				p = Peripheral(self.device, "random")
 			except Exception as err:
 				print("Caught exception.. Retrying connection..")
 				traceback.print_tb(err.__traceback__)
-			
 
+		# setting delegate (in bluepy; still has to be implemented)
 		p.setDelegate(PeripheralDelegate())	
 		print("Connected..")	
 		
@@ -180,14 +183,18 @@ class Parrot():
 		led_control_ch = live_service.getCharacteristics(UUID(CONTROLS["LED"]))[0]
 		live_measure_ch = live_service.getCharacteristics(UUID(CONTROLS["LIVE_MODE_PERIOD"]))[0]
 	
+		# turning on live measure period, 1s
 		self.write(live_measure_ch, ENABLE)
 		
 		# getting pf battery service
 		battery_service = p.getServiceByUUID(UUID(SERVICES["BATTERY"]))
 		
 		print("Starting sensor readings...")	
+		# turning on led indicator
 		self.write(led_control_ch, ENABLE)
 
 		while True:
 			print(self.read_sensors(live_service, battery_service, self.isNewFirmware(firmware_ver_ch.read())))
+		
+		# turning off led indicator
 		self.write(led_control_ch, DISABLE)
