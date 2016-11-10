@@ -1,7 +1,8 @@
 from bluepy.btle import Peripheral, UUID, DefaultDelegate
 import time
 from threading import Event
-
+import traceback
+import numpy as np
 
 ## CONSTANTS ##
 SERVICES = {
@@ -26,12 +27,16 @@ SERIAL_HDL = 37
 DFR_PWD_STR = str(bytearray(b"AT+PASSWOR=DFRobot\r\n"))
 DFR_BDR_STR = str(bytearray(b"AT+CURRUART=115200\r\n"))
 
+readings = np.array([])
+
 class PeripheralDelegate(DefaultDelegate):
 	def __init__(self, serial_ch):
 		DefaultDelegate.__init__(self)
 		self.serial_ch = serial_ch
+
 	def handleNotification(self, cHandle, data):
 		data = str(data)
+		global readings
 		if cHandle is SERIAL_HDL:
 			if "RUNDP:OK" in data:
 				print("Undeployed..")
@@ -39,22 +44,15 @@ class PeripheralDelegate(DefaultDelegate):
 				print("RDEPL:OK")
 				self.serial_ch.write(str.encode("QREAD;\n"))
 			if "pH" in data:
-				print(data.split("=")[1].split(";")[0].strip())
+				readings = np.append(readings, {"PH": data.split("=")[1].split(";")[0].strip()})
 		
 
 class Bluno():
 	def __init__(self, device, name):
 		self.name = name
 		self.device = device
+		self.n_read = 4
 	
-
-	def printServicesCharacteristics(self):
-		for service in p.getServices():
-			print("Service: {}; UUID: {}".format(service, service.uuid))
-			for char in service.getCharacteristics():
-				print("\t {};{}".format(char, char.uuid))	
-
-		
 	# start deployment
 	def start_deploy(self, serial_ch):
 		serial_ch.write(str.encode("QDEPL;\r\n"))
@@ -62,7 +60,18 @@ class Bluno():
 	def stop_deploy(self, serial_ch):
 		serial_ch.write(str.encode("QUNDP;\r\n"))
 
-					
+	def isSuccess(self):
+		return self.isSuccess
+	
+	def get_readings(self):
+		return readings
+
+	def get_readings_mean_var(self):
+		readings = self.get_readings()
+		if readings.size == 0:
+			return (0, 0) 
+		return (np.round(readings.mean(), 4), np.round(readings.var(),4))
+	
 	def start(self):
 		print("Attempting to connect to {} [{}]".format(self.name, self.device.addr))
 		
@@ -85,15 +94,12 @@ class Bluno():
 		
 		p.setDelegate(PeripheralDelegate(serial_ch))
 		
-		self.stop_deploy(serial_ch)
-		time.sleep(500)
 		self.start_deploy(serial_ch)
-		
-		n_read = 12	
-		while n_read > 0:
+			
+		while self.n_read != 0:
 			if p.waitForNotifications(1.0):
 				continue
-			n_read -= 1
-		print("Reading finished")
+			self.n_read -= 1
+		
 		self.stop_deploy(serial_ch)
 		p.disconnect()

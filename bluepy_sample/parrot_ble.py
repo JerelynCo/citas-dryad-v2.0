@@ -2,6 +2,7 @@ from bluepy.btle import DefaultDelegate, Peripheral, UUID
 import struct
 import datetime
 import traceback
+import numpy as np
 
 ## Constants ##
 # Services
@@ -17,7 +18,7 @@ SENSORS = {
 	"SOIL_EC"		: "39e1fa0284a811e2afba0002a5d5c51b",
 	"SOIL_TEMP"		: "39e1fa0384a811e2afba0002a5d5c51b",
 	"AIR_TEMP"		: "39e1fa0484a811e2afba0002a5d5c51b",
-	"SOIL_MOISTURE"		: "39e1fa0584a811e2afba0002a5d5c51b",
+	"SOIL_MOISTURE"	: "39e1fa0584a811e2afba0002a5d5c51b",
 }
 
 # Sensors Characteristics (New firmware)
@@ -28,18 +29,18 @@ CAL_SENSORS = {
 	"AIR_TEMP"		: "39e1fa0484a811e2afba0002a5d5c51b",
 	"VWC"			: "39e1fa0584a811e2afba0002a5d5c51b",
 	"CAL_VWC"		: "39e1fa0984a811e2afba0002a5d5c51b",
-	"CAL_AIR_TEMP"		: "39e1fa0a84a811e2afba0002a5d5c51b",
+	"CAL_AIR_TEMP"	: "39e1fa0a84a811e2afba0002a5d5c51b",
 	"CAL_DLI"		: "39e1fa0b84a811e2afba0002a5d5c51b",
 	"CAL_EA"		: "39e1fa0c84a811e2afba0002a5d5c51b",
 	"CAL_ECB"		: "39e1fa0d84a811e2afba0002a5d5c51b",
-	"CAL_EC_POROUS"		: "39e1fa0e84a811e2afba0002a5d5c51b",
+	"CAL_EC_POROUS"	: "39e1fa0e84a811e2afba0002a5d5c51b",
 }
 
 # Control characteristics
 CONTROLS = {
 	"FIRMWARE_VER"		: 0x2a26,
 	"LIVE_MODE_PERIOD"	: "39e1fa0684a811e2afba0002a5d5c51b",   
-	"LED"			: "39e1fa0784a811e2afba0002a5d5c51b",
+	"LED"				: "39e1fa0784a811e2afba0002a5d5c51b",
 	"LAST_MOVE_DATE"	: "39e1fa0884a811e2afba0002a5d5c51b", 
 	"BATTERY_LEVEL"		: 0x2a19
 }
@@ -47,6 +48,7 @@ CONTROLS = {
 # Enable disable flags
 ENABLE = "\x01"
 DISABLE = "\x00"
+
 
 ## data value conversions
 def unpack_U16(val):
@@ -82,20 +84,14 @@ def conv_moisture(val):
 		dec_val = 60.0
 	return dec_val
 
-## Delegate of bluePy
-# TODO use this to manipulate data
-class PeripheralDelegate(DefaultDelegate):
-	def __init__(self):
-		DefaultDelegate.__init__(self)
-	def handleNotification(self, cHandle, data):
-		print("Handle: {}; Data: {}". format(cHandle,data))
-
 # Parrot class	
 class Parrot():	
 	def __init__(self, device, name):
 		self.name = name
-		self.device = device		
-	
+		self.device = device
+		self.n_read = 3		
+		self.readings = np.array([])	
+
 	# write to characteristic a value		
 	def write(self, char, val):
 		char.write(str.encode(val))
@@ -153,7 +149,9 @@ class Parrot():
 						reading[key] = conv_moisture(unpack_U16(char.read()))
 		return reading	
 
-	# TODO: Implement stop method
+	def get_readings(self):
+		return self.readings	
+
 	def start(self): 
 		print("Attempting to connect to {} [{}]".format(self.name, self.device.addr))
 		
@@ -168,8 +166,6 @@ class Parrot():
 				print("Caught exception.. Retrying connection..")
 				traceback.print_tb(err.__traceback__)
 
-		# setting delegate (in bluepy; still has to be implemented)
-		p.setDelegate(PeripheralDelegate())	
 		print("Connected..")	
 		
 		# getting firmware version of parrotflower		
@@ -178,8 +174,6 @@ class Parrot():
 		
 		# getting live services and controlling led and live measure period
 		live_service = p.getServiceByUUID(UUID(SERVICES["LIVE"]))  
-		for ls in live_service.getCharacteristics():
-			print(ls)
 		led_control_ch = live_service.getCharacteristics(UUID(CONTROLS["LED"]))[0]
 		live_measure_ch = live_service.getCharacteristics(UUID(CONTROLS["LIVE_MODE_PERIOD"]))[0]
 	
@@ -192,9 +186,14 @@ class Parrot():
 		print("Starting sensor readings...")	
 		# turning on led indicator
 		self.write(led_control_ch, ENABLE)
-
-		while True:
-			print(self.read_sensors(live_service, battery_service, self.isNewFirmware(firmware_ver_ch.read())))
 		
+		
+		while self.n_read != 0:
+			self.readings = np.append(self.readings, self.read_sensors(live_service, battery_service, self.isNewFirmware(firmware_ver_ch.read())))
+			self.n_read -= 1
+	
 		# turning off led indicator
 		self.write(led_control_ch, DISABLE)
+
+		# disconnecting peripheral
+		p.disconnect()
