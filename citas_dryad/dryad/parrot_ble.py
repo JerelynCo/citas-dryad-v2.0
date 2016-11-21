@@ -51,7 +51,7 @@ CONTROLS = {
 
 # Parrot class	
 class Parrot():	
-	def __init__(self, device, name, n_read):
+	def __init__(self, device, name, n_read=3):
 		self.name = name
 		self.device = device
 		self.peripheral = None

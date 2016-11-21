@@ -3079,3 +3079,509 @@ bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, ad
 2016-11-21 10:42:06,323 - [INFO] [MainThread] (parrot_ble:149) Connected.
 2016-11-21 10:42:12,460 - [INFO] [MainThread] (parrot_ble:89) Starting sensor readings...
 2016-11-21 10:42:15,513 - [INFO] [MainThread] (main:57) MERGED: defaultdict(<class 'dict'>, {'sn1': {'AIR_TEMP': 31.193532421440008, 'bluno_addr': 'c4:be:84:28:89:4a', 'SUNLIGHT': 0.12969122911021727, 'CAL_AIR_TEMP': 32.177879333496094, 'CAL_DLI': 0.13590790331363678, 'parrot_addr': 'a0:14:3d:84:1b:34', 'CAL_VWC': 0.0, 'BATTERY': 94, 'SOIL_TEMP': 28.983135805440003, 'CAL_ECB': 0.0, 'VWC': 0.0, 'PF_TIMESTAMP': '2016-11-21 10:42:15', 'SOIL_EC': 0.0, 'CAL_EC_POROUS': -0.0, 'CAL_EA': 1.2454376220703125}})
+2016-11-21 12:01:45,468 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-21 12:01:45,471 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-21 12:01:55,497 - [INFO] [MainThread] (main:28) Device c4:be:84:28:89:4a (public), RSSI=-44 dB
+2016-11-21 12:01:55,499 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-21 12:01:55,501 - [INFO] [MainThread] (main:35) Match: BLUNO
+2016-11-21 12:01:55,503 - [INFO] [MainThread] (bluno_ble:92) Attempting to connect to sn1_bluno [c4:be:84:28:89:4a]
+2016-11-21 12:01:56,343 - [INFO] [MainThread] (bluno_ble:105) Connected.
+2016-11-21 12:04:04,353 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-21 12:04:04,354 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-21 12:04:14,374 - [INFO] [MainThread] (main:28) Device a0:14:3d:84:1b:34 (public), RSSI=-69 dB
+2016-11-21 12:04:14,375 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-21 12:04:14,376 - [INFO] [MainThread] (main:41) Match: PARROT FLOWER
+2016-11-21 12:05:01,536 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-21 12:05:01,537 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-21 12:05:11,558 - [INFO] [MainThread] (main:28) Device a0:14:3d:84:1b:34 (public), RSSI=-69 dB
+2016-11-21 12:05:11,559 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-21 12:05:11,560 - [INFO] [MainThread] (main:41) Match: PARROT FLOWER
+2016-11-21 12:05:11,561 - [INFO] [MainThread] (parrot_ble:138) Attempting to connect to sn1_parrot [a0:14:3d:84:1b:34]
+2016-11-21 12:05:15,941 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:05:21,941 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:05:25,941 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:05:31,941 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:05:35,941 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:05:41,941 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:05:45,941 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:05:52,066 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:05:56,066 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:06:02,066 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:06:06,066 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:06:10,066 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:06:14,336 - [INFO] [MainThread] (parrot_ble:149) Connected.
+2016-11-21 12:06:18,248 - [INFO] [MainThread] (parrot_ble:89) Starting sensor readings...
+2016-11-21 12:06:20,410 - [INFO] [MainThread] (main:28) Device a0:14:3d:0c:aa:a2 (public), RSSI=-69 dB
+2016-11-21 12:06:20,411 - [INFO] [MainThread] (main:28) Device c4:be:84:28:89:4a (public), RSSI=-57 dB
+2016-11-21 12:06:20,413 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-21 12:06:20,414 - [INFO] [MainThread] (main:35) Match: BLUNO
+2016-11-21 12:06:20,415 - [INFO] [MainThread] (bluno_ble:92) Attempting to connect to sn1_bluno [c4:be:84:28:89:4a]
+2016-11-21 12:06:21,427 - [INFO] [MainThread] (bluno_ble:105) Connected.
+2016-11-21 12:07:28,638 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-21 12:07:28,638 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-21 12:07:38,652 - [INFO] [MainThread] (main:28) Device a0:14:3d:84:1b:34 (public), RSSI=-62 dB
+2016-11-21 12:07:38,653 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-21 12:07:38,654 - [INFO] [MainThread] (main:41) Match: PARROT FLOWER
+2016-11-21 12:07:38,655 - [INFO] [MainThread] (parrot_ble:138) Attempting to connect to sn1_parrot [a0:14:3d:84:1b:34]
+2016-11-21 12:07:46,691 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:07:50,691 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:07:56,995 - [INFO] [MainThread] (parrot_ble:149) Connected.
+2016-11-21 12:08:01,176 - [INFO] [MainThread] (parrot_ble:89) Starting sensor readings...
+2016-11-21 12:08:03,406 - [INFO] [MainThread] (main:28) Device c4:be:84:28:89:4a (public), RSSI=-45 dB
+2016-11-21 12:08:03,407 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-21 12:08:03,408 - [INFO] [MainThread] (main:35) Match: BLUNO
+2016-11-21 12:08:03,409 - [INFO] [MainThread] (bluno_ble:92) Attempting to connect to sn1_bluno [c4:be:84:28:89:4a]
+2016-11-21 12:08:04,424 - [INFO] [MainThread] (bluno_ble:105) Connected.
+2016-11-21 12:11:41,147 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-21 12:11:41,147 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-21 12:11:51,168 - [INFO] [MainThread] (main:28) Device a0:14:3d:84:1b:34 (public), RSSI=-64 dB
+2016-11-21 12:11:51,169 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-21 12:11:51,170 - [INFO] [MainThread] (main:41) Match: PARROT FLOWER
+2016-11-21 12:11:51,171 - [INFO] [MainThread] (parrot_ble:138) Attempting to connect to sn1_parrot [a0:14:3d:84:1b:34]
+2016-11-21 12:11:56,065 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:12:02,065 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:12:06,065 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:12:12,065 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:12:16,338 - [INFO] [MainThread] (parrot_ble:149) Connected.
+2016-11-21 12:12:20,182 - [INFO] [MainThread] (parrot_ble:89) Starting sensor readings...
+2016-11-21 12:12:22,142 - [INFO] [MainThread] (main:28) Device a0:14:3d:0c:aa:a2 (public), RSSI=-68 dB
+2016-11-21 12:12:22,144 - [INFO] [MainThread] (main:28) Device a0:14:3d:a0:56:78 (public), RSSI=-69 dB
+2016-11-21 12:12:22,144 - [INFO] [MainThread] (main:28) Device c4:be:84:28:89:4a (public), RSSI=-53 dB
+2016-11-21 12:12:22,145 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-21 12:12:22,146 - [INFO] [MainThread] (main:35) Match: BLUNO
+2016-11-21 12:12:22,147 - [INFO] [MainThread] (bluno_ble:92) Attempting to connect to sn1_bluno [c4:be:84:28:89:4a]
+2016-11-21 12:12:22,890 - [INFO] [MainThread] (bluno_ble:105) Connected.
+2016-11-21 12:12:26,786 - [INFO] [MainThread] (main:59) MERGED: defaultdict(<class 'dict'>, {'sn1': {'VWC': 0.0, 'BATTERY': 94, 'CAL_DLI': 0.13590790331363678, 'BL_TIMESTAMP': '2016-11-21 12:12:26', 'SOIL_EC': 0.0, 'PH': None, 'CAL_EA': 1.3301429748535156, 'CAL_ECB': 0.0, 'CAL_VWC': 0.0, 'bluno_addr': 'c4:be:84:28:89:4a', 'PF_TIMESTAMP': '2016-11-21 12:12:22', 'CAL_AIR_TEMP': 27.577524185180664, 'SUNLIGHT': 0.12969122911021727, 'SOIL_TEMP': 27.037155281920004, 'AIR_TEMP': 26.415146950080004, 'parrot_addr': 'a0:14:3d:84:1b:34', 'CAL_EC_POROUS': -0.0}})
+2016-11-21 12:15:09,452 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-21 12:15:09,453 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-21 12:15:19,479 - [INFO] [MainThread] (main:28) Device a0:14:3d:a0:56:78 (public), RSSI=-75 dB
+2016-11-21 12:15:19,481 - [INFO] [MainThread] (main:28) Device 41:28:83:48:af:f8 (random), RSSI=-97 dB
+2016-11-21 12:15:19,482 - [INFO] [MainThread] (main:28) Device c4:be:84:28:89:4a (public), RSSI=-41 dB
+2016-11-21 12:15:19,484 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-21 12:15:19,485 - [INFO] [MainThread] (main:35) Match: BLUNO
+2016-11-21 12:15:19,486 - [INFO] [MainThread] (bluno_ble:93) Attempting to connect to sn1_bluno [c4:be:84:28:89:4a]
+2016-11-21 12:15:20,340 - [INFO] [MainThread] (bluno_ble:106) Connected.
+2016-11-21 12:15:24,296 - [INFO] [MainThread] (main:28) Device 69:c5:2c:42:6c:cd (random), RSSI=-98 dB
+2016-11-21 12:15:24,297 - [INFO] [MainThread] (main:28) Device a0:14:3d:0c:aa:a2 (public), RSSI=-70 dB
+2016-11-21 12:15:24,298 - [INFO] [MainThread] (main:28) Device a0:14:3d:84:1b:34 (public), RSSI=-72 dB
+2016-11-21 12:15:24,299 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-21 12:15:24,301 - [INFO] [MainThread] (main:41) Match: PARROT FLOWER
+2016-11-21 12:15:24,302 - [INFO] [MainThread] (parrot_ble:138) Attempting to connect to sn1_parrot [a0:14:3d:84:1b:34]
+2016-11-21 12:15:26,688 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:15:34,688 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:15:40,672 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:15:44,682 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:15:48,690 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:15:54,706 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:16:00,715 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:16:04,737 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:16:08,752 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:16:12,762 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:16:18,813 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:16:23,051 - [INFO] [MainThread] (parrot_ble:149) Connected.
+2016-11-21 12:16:26,557 - [INFO] [MainThread] (parrot_ble:89) Starting sensor readings...
+2016-11-21 12:16:28,450 - [INFO] [MainThread] (main:59) MERGED: defaultdict(<class 'dict'>, {'sn1': {'AIR_TEMP': 26.32611853824, 'CAL_AIR_TEMP': 27.2661190032959, 'SUNLIGHT': 0.12969122911021727, 'CAL_VWC': 0.0, 'PH': None, 'parrot_addr': 'a0:14:3d:84:1b:34', 'SOIL_EC': 0.0, 'VWC': 0.0, 'BL_TIMESTAMP': '2016-11-21 12:15:24', 'PF_TIMESTAMP': '2016-11-21 12:16:28', 'BATTERY': 94, 'SOIL_TEMP': 26.992789274039996, 'CAL_EC_POROUS': -0.0, 'bluno_addr': 'c4:be:84:28:89:4a', 'CAL_EA': 1.286712646484375, 'CAL_ECB': 0.0, 'CAL_DLI': 0.13590790331363678}})
+2016-11-21 12:22:22,548 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-21 12:22:22,549 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-21 12:22:32,570 - [INFO] [MainThread] (main:28) Device a0:14:3d:a0:56:78 (public), RSSI=-71 dB
+2016-11-21 12:22:32,572 - [INFO] [MainThread] (main:28) Device a0:14:3d:0c:aa:a2 (public), RSSI=-69 dB
+2016-11-21 12:22:32,573 - [INFO] [MainThread] (main:28) Device c4:be:84:28:89:4a (public), RSSI=-45 dB
+2016-11-21 12:22:32,573 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-21 12:22:32,574 - [INFO] [MainThread] (main:35) Match: BLUNO
+2016-11-21 12:22:32,575 - [INFO] [MainThread] (bluno_ble:94) Attempting to connect to sn1_bluno [c4:be:84:28:89:4a]
+2016-11-21 12:22:33,486 - [INFO] [MainThread] (bluno_ble:107) Connected.
+2016-11-21 12:22:37,444 - [INFO] [MainThread] (main:28) Device a0:14:3d:84:1b:34 (public), RSSI=-64 dB
+2016-11-21 12:22:37,445 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-21 12:22:37,446 - [INFO] [MainThread] (main:41) Match: PARROT FLOWER
+2016-11-21 12:22:37,447 - [INFO] [MainThread] (main:60) MERGED: defaultdict(<class 'dict'>, {'sn1': {'parrot_addr': 'a0:14:3d:84:1b:34', 'bluno_addr': 'c4:be:84:28:89:4a', 'BL_TIMESTAMP': '2016-11-21 12:22:37', 'PH': None}})
+2016-11-21 12:26:29,246 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-21 12:26:29,248 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-21 12:26:39,274 - [INFO] [MainThread] (main:28) Device c4:be:84:28:89:4a (public), RSSI=-41 dB
+2016-11-21 12:26:39,276 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-21 12:26:39,276 - [INFO] [MainThread] (main:35) Match: BLUNO
+2016-11-21 12:26:39,278 - [INFO] [MainThread] (bluno_ble:94) Attempting to connect to sn1_bluno [c4:be:84:28:89:4a]
+2016-11-21 12:26:41,063 - [INFO] [MainThread] (bluno_ble:107) Connected.
+2016-11-21 12:26:42,138 - [INFO] [MainThread] (bluno_ble:47) Bluno: Deployed
+2016-11-21 12:26:44,501 - [INFO] [MainThread] (bluno_ble:50) Bluno: Data Received
+2016-11-21 12:26:46,054 - [INFO] [MainThread] (bluno_ble:50) Bluno: Data Received
+2016-11-21 12:26:47,060 - [INFO] [MainThread] (main:28) Device a0:14:3d:a0:56:78 (public), RSSI=-73 dB
+2016-11-21 12:26:47,061 - [INFO] [MainThread] (main:28) Device a0:14:3d:0c:aa:a2 (public), RSSI=-66 dB
+2016-11-21 12:26:47,062 - [INFO] [MainThread] (main:28) Device a0:14:3d:84:1b:34 (public), RSSI=-73 dB
+2016-11-21 12:26:47,062 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-21 12:26:47,063 - [INFO] [MainThread] (main:41) Match: PARROT FLOWER
+2016-11-21 12:26:47,064 - [INFO] [MainThread] (main:60) MERGED: defaultdict(<class 'dict'>, {'sn1': {'parrot_addr': 'a0:14:3d:84:1b:34', 'bluno_addr': 'c4:be:84:28:89:4a', 'BL_TIMESTAMP': '2016-11-21 12:26:47', 'PH': '10.26'}})
+2016-11-21 12:27:11,823 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-21 12:27:11,824 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-21 12:27:21,845 - [INFO] [MainThread] (main:28) Device a0:14:3d:0c:aa:a2 (public), RSSI=-63 dB
+2016-11-21 12:27:21,847 - [INFO] [MainThread] (main:28) Device c4:be:84:28:89:4a (public), RSSI=-53 dB
+2016-11-21 12:27:21,847 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-21 12:27:21,848 - [INFO] [MainThread] (main:35) Match: BLUNO
+2016-11-21 12:27:21,849 - [INFO] [MainThread] (bluno_ble:94) Attempting to connect to sn1_bluno [c4:be:84:28:89:4a]
+2016-11-21 12:27:23,757 - [INFO] [MainThread] (bluno_ble:107) Connected.
+2016-11-21 12:27:24,832 - [INFO] [MainThread] (bluno_ble:47) Bluno: Deployed
+2016-11-21 12:27:27,263 - [INFO] [MainThread] (bluno_ble:50) Bluno: Data Received
+2016-11-21 12:27:28,815 - [INFO] [MainThread] (bluno_ble:50) Bluno: Data Received
+2016-11-21 12:27:29,821 - [INFO] [MainThread] (main:28) Device a0:14:3d:a0:56:78 (public), RSSI=-74 dB
+2016-11-21 12:27:29,822 - [INFO] [MainThread] (main:28) Device a0:14:3d:84:1b:34 (public), RSSI=-78 dB
+2016-11-21 12:27:29,823 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-21 12:27:29,824 - [INFO] [MainThread] (main:41) Match: PARROT FLOWER
+2016-11-21 12:27:29,825 - [INFO] [MainThread] (parrot_ble:138) Attempting to connect to sn1_parrot [a0:14:3d:84:1b:34]
+2016-11-21 12:27:32,080 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:27:38,185 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:27:48,185 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:27:52,185 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:27:58,185 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:28:06,185 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:28:10,185 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:28:16,309 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:28:20,309 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:28:26,310 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:28:30,309 - [ERROR] [MainThread] (parrot_ble:148) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 146, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-21 12:28:34,507 - [INFO] [MainThread] (parrot_ble:149) Connected.
+2016-11-21 12:28:38,553 - [INFO] [MainThread] (parrot_ble:89) Starting sensor readings...
+2016-11-21 12:28:40,446 - [INFO] [MainThread] (main:58) MERGED: defaultdict(<class 'dict'>, {'sn1': {'CAL_EA': 1.2658042907714844, 'CAL_DLI': 0.13590790331363678, 'CAL_AIR_TEMP': 26.998743057250977, 'AIR_TEMP': 26.14791954432, 'parrot_addr': 'a0:14:3d:84:1b:34', 'BATTERY': 94, 'VWC': 0.0, 'SOIL_EC': 0.0, 'bluno_addr': 'c4:be:84:28:89:4a', 'CAL_VWC': 0.0, 'SUNLIGHT': 0.12969122911021727, 'PF_TIMESTAMP': '2016-11-21 12:28:40', 'CAL_ECB': 0.0, 'BL_TIMESTAMP': '2016-11-21 12:27:29', 'CAL_EC_POROUS': -0.0, 'PH': '10.22', 'SOIL_TEMP': 26.859636602880006}})
+2016-11-21 13:15:40,892 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-21 13:15:40,894 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-21 13:15:50,926 - [INFO] [MainThread] (main:28) Device c4:be:84:28:89:4a (public), RSSI=-44 dB
+2016-11-21 13:15:50,928 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-21 13:15:50,930 - [INFO] [MainThread] (main:35) Match: BLUNO
+2016-11-21 13:15:50,932 - [INFO] [MainThread] (bluno_ble:98) Attempting to connect to sn1_bluno [c4:be:84:28:89:4a]
+2016-11-21 13:15:51,763 - [INFO] [MainThread] (bluno_ble:111) Connected.
+2016-11-21 13:15:52,771 - [INFO] [MainThread] (bluno_ble:50) Bluno: Deployed
+2016-11-21 13:17:59,014 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-21 13:17:59,016 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-21 13:18:09,043 - [INFO] [MainThread] (main:28) Device a0:14:3d:a0:56:78 (public), RSSI=-70 dB
+2016-11-21 13:18:09,044 - [INFO] [MainThread] (main:28) Device a0:14:3d:0c:aa:a2 (public), RSSI=-70 dB
+2016-11-21 13:18:09,045 - [INFO] [MainThread] (main:28) Device a0:14:3d:84:1b:34 (public), RSSI=-69 dB
+2016-11-21 13:18:09,046 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-21 13:18:09,047 - [INFO] [MainThread] (main:41) Match: PARROT FLOWER
+2016-11-21 13:18:09,048 - [INFO] [MainThread] (parrot_ble:138) Attempting to connect to sn1_parrot [a0:14:3d:84:1b:34]
+2016-11-21 13:18:33,386 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-21 13:18:33,387 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-21 13:18:43,414 - [INFO] [MainThread] (main:28) Device a0:14:3d:a0:56:78 (public), RSSI=-68 dB
+2016-11-21 13:18:43,415 - [INFO] [MainThread] (main:28) Device a0:14:3d:0c:aa:a2 (public), RSSI=-67 dB
+2016-11-21 13:18:43,416 - [INFO] [MainThread] (main:28) Device c4:be:84:28:89:4a (public), RSSI=-49 dB
+2016-11-21 13:18:43,417 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-21 13:18:43,418 - [INFO] [MainThread] (main:35) Match: BLUNO
+2016-11-21 13:18:43,419 - [INFO] [MainThread] (bluno_ble:99) Attempting to connect to sn1_bluno [c4:be:84:28:89:4a]
+2016-11-21 13:18:44,899 - [INFO] [MainThread] (bluno_ble:112) Connected.

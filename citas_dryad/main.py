@@ -33,19 +33,20 @@ def main():
 	
 			if curr_device["type"] == "bluno":
 				logger.info("Match: BLUNO")
-				bl = bluno_ble.Bluno(device, curr_device["id"] + "_bluno", N_READ)
-				bl.start()
-				curr_device["data"] = bl.get_agg_readings()
-	
+				bl = bluno_ble.Bluno(device, curr_device["id"] + "_bluno")
+				bl.setup_conn()
+				curr_device["data"] = bl.read_ph()
+				bl.disconnect()	
 			elif curr_device["type"] == "parrot":
+				"""
 				logger.info("Match: PARROT FLOWER")
-				pf = parrot_ble.Parrot(device, curr_device["id"] + "_parrot", N_READ)
+				pf = parrot_ble.Parrot(device, curr_device["id"] + "_parrot")
 				pf.setup_conn()
 				pf.switch_led(ENABLE)
 				curr_device["data"] = pf.add_timestamp(pf.read_sensors())
 				pf.switch_led(DISABLE)
 				pf.disconnect()
-		
+				"""
 		elif not device.connectable and device.addr in devices.keys():
 			logger.debug("Not connectable at the moment: " + str(device.addr)
 )
