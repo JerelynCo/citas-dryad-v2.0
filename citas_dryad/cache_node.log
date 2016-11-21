@@ -3585,3 +3585,314 @@ bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, ad
 2016-11-21 13:18:43,418 - [INFO] [MainThread] (main:35) Match: BLUNO
 2016-11-21 13:18:43,419 - [INFO] [MainThread] (bluno_ble:99) Attempting to connect to sn1_bluno [c4:be:84:28:89:4a]
 2016-11-21 13:18:44,899 - [INFO] [MainThread] (bluno_ble:112) Connected.
+2016-11-22 00:51:51,722 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-22 00:51:51,728 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-22 00:52:01,754 - [INFO] [MainThread] (main:28) Device a0:14:3d:84:1b:34 (public), RSSI=-71 dB
+2016-11-22 00:52:01,755 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 00:52:01,756 - [INFO] [MainThread] (main:28) Device a0:14:3d:0c:aa:a2 (public), RSSI=-71 dB
+2016-11-22 00:52:01,757 - [INFO] [MainThread] (main:28) Device c4:be:84:28:89:4a (public), RSSI=-40 dB
+2016-11-22 00:52:01,757 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 00:52:01,758 - [INFO] [MainThread] (main:35) Match: BLUNO
+2016-11-22 00:52:01,759 - [INFO] [MainThread] (bluno_ble:117) Attempting to connect to sn1_bluno [c4:be:84:28:89:4a]
+2016-11-22 00:52:02,680 - [INFO] [MainThread] (bluno_ble:130) Connected.
+2016-11-22 00:52:52,728 - [INFO] [MainThread] (bluno_ble:62) Bluno: Deployed
+2016-11-22 00:52:54,888 - [INFO] [MainThread] (bluno_ble:66) Bluno: Data Received
+2016-11-22 00:52:56,373 - [INFO] [MainThread] (bluno_ble:66) Bluno: Data Received
+2016-11-22 00:52:57,926 - [INFO] [MainThread] (bluno_ble:66) Bluno: Data Received
+2016-11-22 00:52:59,478 - [INFO] [MainThread] (bluno_ble:66) Bluno: Data Received
+2016-11-22 00:53:00,963 - [INFO] [MainThread] (bluno_ble:66) Bluno: Data Received
+2016-11-22 00:53:02,516 - [INFO] [MainThread] (bluno_ble:66) Bluno: Data Received
+2016-11-22 00:53:04,068 - [INFO] [MainThread] (bluno_ble:66) Bluno: Data Received
+2016-11-22 00:53:05,552 - [INFO] [MainThread] (bluno_ble:66) Bluno: Data Received
+2016-11-22 00:53:07,106 - [INFO] [MainThread] (bluno_ble:66) Bluno: Data Received
+2016-11-22 00:53:08,658 - [INFO] [MainThread] (bluno_ble:66) Bluno: Data Received
+2016-11-22 00:53:10,211 - [INFO] [MainThread] (bluno_ble:66) Bluno: Data Received
+2016-11-22 00:53:11,696 - [INFO] [MainThread] (bluno_ble:66) Bluno: Data Received
+2016-11-22 00:53:13,248 - [INFO] [MainThread] (bluno_ble:66) Bluno: Data Received
+2016-11-22 01:00:18,067 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-22 01:00:18,069 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-22 01:00:28,092 - [INFO] [MainThread] (main:28) Device 4f:37:c8:90:2a:95 (random), RSSI=-99 dB
+2016-11-22 01:00:28,093 - [INFO] [MainThread] (main:28) Device c4:be:84:28:89:4a (public), RSSI=-41 dB
+2016-11-22 01:00:28,094 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:00:28,095 - [INFO] [MainThread] (main:35) Match: BLUNO
+2016-11-22 01:00:28,096 - [INFO] [MainThread] (bluno_ble:117) Attempting to connect to sn1_bluno [c4:be:84:28:89:4a]
+2016-11-22 01:00:28,880 - [INFO] [MainThread] (bluno_ble:130) Connected.
+2016-11-22 01:00:29,888 - [INFO] [MainThread] (bluno_ble:52) Bluno: Request to undeploy
+2016-11-22 01:00:30,901 - [INFO] [MainThread] (bluno_ble:59) Bluno: Undeployed
+2016-11-22 01:00:59,588 - [INFO] [MainThread] (bluno_ble:62) Bluno: Deployed
+2016-11-22 01:01:00,208 - [INFO] [MainThread] (main:28) Device a0:14:3d:a0:56:78 (public), RSSI=-64 dB
+2016-11-22 01:01:00,209 - [INFO] [MainThread] (main:28) Device 4e:3e:f3:e0:e0:10 (random), RSSI=-100 dB
+2016-11-22 01:01:00,210 - [INFO] [MainThread] (main:28) Device a0:14:3d:0c:aa:a2 (public), RSSI=-72 dB
+2016-11-22 01:01:00,211 - [INFO] [MainThread] (main:28) Device a0:14:3d:84:1b:34 (public), RSSI=-67 dB
+2016-11-22 01:01:00,212 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:01:00,213 - [INFO] [MainThread] (main:60) MERGED: defaultdict(<class 'dict'>, {'sn1': {'PH': None, 'bluno_addr': 'c4:be:84:28:89:4a', 'parrot_addr': 'a0:14:3d:84:1b:34', 'BL_TIMESTAMP': '2016-11-22 01:01:00'}})
+2016-11-22 01:01:36,504 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-22 01:01:36,506 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-22 01:01:46,532 - [INFO] [MainThread] (main:28) Device c4:be:84:28:89:4a (public), RSSI=-40 dB
+2016-11-22 01:01:46,533 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:01:46,534 - [INFO] [MainThread] (main:35) Match: BLUNO
+2016-11-22 01:01:46,535 - [INFO] [MainThread] (bluno_ble:117) Attempting to connect to sn1_bluno [c4:be:84:28:89:4a]
+2016-11-22 01:01:47,715 - [INFO] [MainThread] (bluno_ble:130) Connected.
+2016-11-22 01:01:48,790 - [INFO] [MainThread] (bluno_ble:62) Bluno: Deployed
+2016-11-22 01:01:49,334 - [INFO] [MainThread] (main:28) Device a0:14:3d:a0:56:78 (public), RSSI=-65 dB
+2016-11-22 01:01:49,335 - [INFO] [MainThread] (main:28) Device a0:14:3d:0c:aa:a2 (public), RSSI=-65 dB
+2016-11-22 01:01:49,336 - [INFO] [MainThread] (main:28) Device 4f:37:c8:90:2a:95 (random), RSSI=-97 dB
+2016-11-22 01:01:49,337 - [INFO] [MainThread] (main:28) Device a0:14:3d:84:1b:34 (public), RSSI=-71 dB
+2016-11-22 01:01:49,338 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:01:49,339 - [INFO] [MainThread] (main:60) MERGED: defaultdict(<class 'dict'>, {'sn1': {'parrot_addr': 'a0:14:3d:84:1b:34', 'BL_TIMESTAMP': '2016-11-22 01:01:49', 'bluno_addr': 'c4:be:84:28:89:4a', 'PH': None}})
+2016-11-22 01:14:27,651 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-22 01:14:27,653 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-22 01:14:37,679 - [INFO] [MainThread] (main:28) Device 66:f0:6d:4c:3c:f0 (random), RSSI=-74 dB
+2016-11-22 01:14:37,680 - [INFO] [MainThread] (main:28) Device a0:14:3d:0c:aa:a2 (public), RSSI=-74 dB
+2016-11-22 01:14:37,681 - [INFO] [MainThread] (main:28) Device 98:e0:d9:8f:2c:d8 (public), RSSI=-74 dB
+2016-11-22 01:14:37,682 - [INFO] [MainThread] (main:28) Device a0:14:3d:a0:56:78 (public), RSSI=-66 dB
+2016-11-22 01:14:37,683 - [INFO] [MainThread] (main:28) Device c4:be:84:28:89:4a (public), RSSI=-43 dB
+2016-11-22 01:14:37,683 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:14:37,684 - [INFO] [MainThread] (main:35) Match: BLUNO
+2016-11-22 01:14:37,685 - [INFO] [MainThread] (bluno_ble:132) Attempting to connect to sn1_bluno [c4:be:84:28:89:4a]
+2016-11-22 01:14:39,548 - [INFO] [MainThread] (bluno_ble:145) Connected.
+2016-11-22 01:14:40,556 - [INFO] [MainThread] (bluno_ble:77) Bluno: Deployed
+2016-11-22 01:14:41,168 - [INFO] [MainThread] (main:28) Device a0:14:3d:84:1b:34 (public), RSSI=-62 dB
+2016-11-22 01:14:41,169 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:14:41,170 - [INFO] [MainThread] (main:60) MERGED: defaultdict(<class 'dict'>, {'sn1': {'PH': None, 'parrot_addr': 'a0:14:3d:84:1b:34', 'bluno_addr': 'c4:be:84:28:89:4a', 'BL_TIMESTAMP': '2016-11-22 01:14:41'}})
+2016-11-22 01:17:00,147 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-22 01:17:00,148 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-22 01:17:10,172 - [INFO] [MainThread] (main:28) Device c4:be:84:28:89:4a (public), RSSI=-46 dB
+2016-11-22 01:17:10,173 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:17:10,174 - [INFO] [MainThread] (main:35) Match: BLUNO
+2016-11-22 01:17:10,175 - [INFO] [MainThread] (bluno_ble:133) Attempting to connect to sn1_bluno [c4:be:84:28:89:4a]
+2016-11-22 01:17:11,963 - [INFO] [MainThread] (bluno_ble:146) Connected.
+2016-11-22 01:17:13,038 - [INFO] [MainThread] (bluno_ble:77) Bluno: Deployed
+2016-11-22 01:17:13,646 - [INFO] [MainThread] (bluno_ble:82) Bluno: Data Received
+2016-11-22 01:17:13,651 - [INFO] [MainThread] (main:28) Device 66:f0:6d:4c:3c:f0 (random), RSSI=-74 dB
+2016-11-22 01:17:13,652 - [INFO] [MainThread] (main:28) Device a0:14:3d:0c:aa:a2 (public), RSSI=-71 dB
+2016-11-22 01:17:13,653 - [INFO] [MainThread] (main:28) Device 98:e0:d9:8f:2c:d8 (public), RSSI=-74 dB
+2016-11-22 01:17:13,654 - [INFO] [MainThread] (main:28) Device a0:14:3d:84:1b:34 (public), RSSI=-64 dB
+2016-11-22 01:17:13,655 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:17:13,656 - [INFO] [MainThread] (main:28) Device a0:14:3d:a0:56:78 (public), RSSI=-71 dB
+2016-11-22 01:17:13,657 - [INFO] [MainThread] (main:60) MERGED: defaultdict(<class 'dict'>, {'sn1': {'parrot_addr': 'a0:14:3d:84:1b:34', 'bluno_addr': 'c4:be:84:28:89:4a', 'BL_TIMESTAMP': '2016-11-22 01:17:13', 'PH': '9.83'}})
+2016-11-22 01:19:44,836 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-22 01:19:44,837 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-22 01:19:54,856 - [INFO] [MainThread] (main:28) Device 7a:c9:9d:69:57:78 (random), RSSI=-97 dB
+2016-11-22 01:19:54,857 - [INFO] [MainThread] (main:28) Device a0:14:3d:84:1b:34 (public), RSSI=-64 dB
+2016-11-22 01:19:54,858 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:19:54,859 - [INFO] [MainThread] (main:28) Device c4:be:84:28:89:4a (public), RSSI=-41 dB
+2016-11-22 01:19:54,860 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:19:54,861 - [INFO] [MainThread] (main:35) Match: BLUNO
+2016-11-22 01:19:54,862 - [INFO] [MainThread] (bluno_ble:134) Attempting to connect to sn1_bluno [c4:be:84:28:89:4a]
+2016-11-22 01:19:55,790 - [INFO] [MainThread] (bluno_ble:147) Connected.
+2016-11-22 01:19:56,798 - [INFO] [MainThread] (bluno_ble:77) Bluno: Deployed
+2016-11-22 01:19:57,409 - [INFO] [MainThread] (main:28) Device 66:f0:6d:4c:3c:f0 (random), RSSI=-72 dB
+2016-11-22 01:19:57,411 - [INFO] [MainThread] (main:28) Device a0:14:3d:0c:aa:a2 (public), RSSI=-68 dB
+2016-11-22 01:19:57,411 - [INFO] [MainThread] (main:28) Device 98:e0:d9:8f:2c:d8 (public), RSSI=-80 dB
+2016-11-22 01:19:57,412 - [INFO] [MainThread] (main:28) Device a0:14:3d:a0:56:78 (public), RSSI=-72 dB
+2016-11-22 01:19:57,413 - [INFO] [MainThread] (main:60) MERGED: defaultdict(<class 'dict'>, {'sn1': {'parrot_addr': 'a0:14:3d:84:1b:34', 'bluno_addr': 'c4:be:84:28:89:4a', 'BL_TIMESTAMP': '2016-11-22 01:19:57', 'PH': None}})
+2016-11-22 01:20:31,704 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-22 01:20:31,706 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-22 01:20:41,732 - [INFO] [MainThread] (main:28) Device 66:f0:6d:4c:3c:f0 (random), RSSI=-71 dB
+2016-11-22 01:20:41,733 - [INFO] [MainThread] (main:28) Device 7a:c9:9d:69:57:78 (random), RSSI=-99 dB
+2016-11-22 01:20:41,734 - [INFO] [MainThread] (main:28) Device 98:e0:d9:8f:2c:d8 (public), RSSI=-71 dB
+2016-11-22 01:20:41,735 - [INFO] [MainThread] (main:28) Device a0:14:3d:84:1b:34 (public), RSSI=-61 dB
+2016-11-22 01:20:41,736 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:20:41,737 - [INFO] [MainThread] (main:28) Device a0:14:3d:a0:56:78 (public), RSSI=-68 dB
+2016-11-22 01:20:41,738 - [INFO] [MainThread] (main:28) Device a0:14:3d:0c:aa:a2 (public), RSSI=-71 dB
+2016-11-22 01:20:41,738 - [INFO] [MainThread] (main:28) Device c4:be:84:28:89:4a (public), RSSI=-48 dB
+2016-11-22 01:20:41,739 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:20:41,740 - [INFO] [MainThread] (main:35) Match: BLUNO
+2016-11-22 01:20:41,741 - [INFO] [MainThread] (bluno_ble:134) Attempting to connect to sn1_bluno [c4:be:84:28:89:4a]
+2016-11-22 01:20:42,577 - [INFO] [MainThread] (bluno_ble:147) Connected.
+2016-11-22 01:20:43,585 - [INFO] [MainThread] (bluno_ble:77) Bluno: Deployed
+2016-11-22 01:20:44,197 - [INFO] [MainThread] (main:60) MERGED: defaultdict(<class 'dict'>, {'sn1': {'parrot_addr': 'a0:14:3d:84:1b:34', 'PH': None, 'BL_TIMESTAMP': '2016-11-22 01:20:44', 'bluno_addr': 'c4:be:84:28:89:4a'}})
+2016-11-22 01:22:21,402 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-22 01:22:21,404 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-22 01:22:31,424 - [INFO] [MainThread] (main:28) Device a0:14:3d:a0:56:78 (public), RSSI=-68 dB
+2016-11-22 01:22:31,425 - [INFO] [MainThread] (main:28) Device 66:f0:6d:4c:3c:f0 (random), RSSI=-72 dB
+2016-11-22 01:22:31,426 - [INFO] [MainThread] (main:28) Device a0:14:3d:0c:aa:a2 (public), RSSI=-69 dB
+2016-11-22 01:22:31,428 - [INFO] [MainThread] (main:28) Device a0:14:3d:84:1b:34 (public), RSSI=-71 dB
+2016-11-22 01:22:31,428 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:22:31,429 - [INFO] [MainThread] (main:28) Device c4:be:84:28:89:4a (public), RSSI=-43 dB
+2016-11-22 01:22:31,430 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:22:31,431 - [INFO] [MainThread] (main:35) Match: BLUNO
+2016-11-22 01:22:31,432 - [INFO] [MainThread] (bluno_ble:135) Attempting to connect to sn1_bluno [c4:be:84:28:89:4a]
+2016-11-22 01:22:32,915 - [INFO] [MainThread] (bluno_ble:148) Connected.
+2016-11-22 01:22:33,923 - [INFO] [MainThread] (bluno_ble:77) Bluno: Deployed
+2016-11-22 01:22:34,468 - [INFO] [MainThread] (main:28) Device 98:e0:d9:8f:2c:d8 (public), RSSI=-74 dB
+2016-11-22 01:22:34,472 - [INFO] [MainThread] (main:28) Device 24:4b:03:29:ac:5a (public), RSSI=-99 dB
+2016-11-22 01:22:34,473 - [INFO] [MainThread] (main:28) Device 7a:c9:9d:69:57:78 (random), RSSI=-98 dB
+2016-11-22 01:22:34,474 - [INFO] [MainThread] (main:60) MERGED: defaultdict(<class 'dict'>, {'sn1': {'BL_TIMESTAMP': '2016-11-22 01:22:34', 'PH': None, 'bluno_addr': 'c4:be:84:28:89:4a', 'parrot_addr': 'a0:14:3d:84:1b:34'}})
+2016-11-22 01:23:57,234 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-22 01:23:57,236 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-22 01:24:07,258 - [INFO] [MainThread] (main:28) Device 24:4b:03:29:ac:5a (public), RSSI=-99 dB
+2016-11-22 01:24:07,260 - [INFO] [MainThread] (main:28) Device a0:14:3d:84:1b:34 (public), RSSI=-65 dB
+2016-11-22 01:24:07,260 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:24:07,261 - [INFO] [MainThread] (main:28) Device c4:be:84:28:89:4a (public), RSSI=-41 dB
+2016-11-22 01:24:07,262 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:24:07,263 - [INFO] [MainThread] (main:35) Match: BLUNO
+2016-11-22 01:24:07,264 - [INFO] [MainThread] (bluno_ble:132) Attempting to connect to sn1_bluno [c4:be:84:28:89:4a]
+2016-11-22 01:24:08,170 - [INFO] [MainThread] (bluno_ble:145) Connected.
+2016-11-22 01:24:09,245 - [INFO] [MainThread] (bluno_ble:77) Bluno: Deployed
+2016-11-22 01:24:11,406 - [INFO] [MainThread] (bluno_ble:81) Bluno: Data Received
+2016-11-22 01:24:12,891 - [INFO] [MainThread] (bluno_ble:81) Bluno: Data Received
+2016-11-22 01:24:14,443 - [INFO] [MainThread] (bluno_ble:81) Bluno: Data Received
+2016-11-22 01:24:15,996 - [INFO] [MainThread] (bluno_ble:81) Bluno: Data Received
+2016-11-22 01:26:24,913 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-22 01:26:24,915 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-22 01:26:34,941 - [INFO] [MainThread] (main:28) Device 66:f0:6d:4c:3c:f0 (random), RSSI=-74 dB
+2016-11-22 01:26:34,943 - [INFO] [MainThread] (main:28) Device a0:14:3d:84:1b:34 (public), RSSI=-69 dB
+2016-11-22 01:26:34,944 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:26:34,945 - [INFO] [MainThread] (main:28) Device a0:14:3d:a0:56:78 (public), RSSI=-71 dB
+2016-11-22 01:26:34,946 - [INFO] [MainThread] (main:28) Device 98:e0:d9:8f:2c:d8 (public), RSSI=-73 dB
+2016-11-22 01:26:34,947 - [INFO] [MainThread] (main:28) Device c4:be:84:28:89:4a (public), RSSI=-51 dB
+2016-11-22 01:26:34,948 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:26:34,949 - [INFO] [MainThread] (main:35) Match: BLUNO
+2016-11-22 01:26:34,950 - [INFO] [MainThread] (bluno_ble:132) Attempting to connect to sn1_bluno [c4:be:84:28:89:4a]
+2016-11-22 01:26:35,815 - [INFO] [MainThread] (bluno_ble:145) Connected.
+2016-11-22 01:26:36,756 - [INFO] [MainThread] (bluno_ble:67) Bluno: Request to undeploy
+2016-11-22 01:26:37,701 - [INFO] [MainThread] (bluno_ble:74) Bluno: Undeployed
+2016-11-22 01:26:38,646 - [INFO] [MainThread] (bluno_ble:77) Bluno: Deployed
+2016-11-22 01:27:54,993 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-22 01:27:54,994 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-22 01:28:05,018 - [INFO] [MainThread] (main:28) Device c4:be:84:28:89:4a (public), RSSI=-40 dB
+2016-11-22 01:28:05,020 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:28:05,020 - [INFO] [MainThread] (main:35) Match: BLUNO
+2016-11-22 01:28:05,021 - [INFO] [MainThread] (bluno_ble:131) Attempting to connect to sn1_bluno [c4:be:84:28:89:4a]
+2016-11-22 01:28:06,350 - [INFO] [MainThread] (bluno_ble:144) Connected.
+2016-11-22 01:28:07,426 - [INFO] [MainThread] (bluno_ble:67) Bluno: Request to undeploy
+2016-11-22 01:28:08,438 - [INFO] [MainThread] (bluno_ble:74) Bluno: Undeployed
+2016-11-22 01:28:11,002 - [INFO] [MainThread] (bluno_ble:77) Bluno: Deployed
+2016-11-22 01:28:11,682 - [INFO] [MainThread] (main:28) Device 98:e0:d9:8f:2c:d8 (public), RSSI=-76 dB
+2016-11-22 01:28:11,683 - [INFO] [MainThread] (main:28) Device 66:f0:6d:4c:3c:f0 (random), RSSI=-76 dB
+2016-11-22 01:28:11,684 - [INFO] [MainThread] (main:28) Device 7a:c9:9d:69:57:78 (random), RSSI=-93 dB
+2016-11-22 01:28:11,685 - [INFO] [MainThread] (main:28) Device a0:14:3d:0c:aa:a2 (public), RSSI=-75 dB
+2016-11-22 01:28:11,686 - [INFO] [MainThread] (main:28) Device a0:14:3d:a0:56:78 (public), RSSI=-73 dB
+2016-11-22 01:28:11,687 - [INFO] [MainThread] (main:28) Device a0:14:3d:84:1b:34 (public), RSSI=-67 dB
+2016-11-22 01:28:11,688 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:29:30,464 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-22 01:29:30,465 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-22 01:29:40,482 - [INFO] [MainThread] (main:28) Device a0:14:3d:a0:56:78 (public), RSSI=-77 dB
+2016-11-22 01:29:40,483 - [INFO] [MainThread] (main:28) Device a0:14:3d:84:1b:34 (public), RSSI=-74 dB
+2016-11-22 01:29:40,483 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:29:40,483 - [INFO] [MainThread] (main:28) Device 7a:c9:9d:69:57:78 (random), RSSI=-96 dB
+2016-11-22 01:29:40,484 - [INFO] [MainThread] (main:28) Device 66:f0:6d:4c:3c:f0 (random), RSSI=-72 dB
+2016-11-22 01:29:40,484 - [INFO] [MainThread] (main:28) Device c4:be:84:28:89:4a (public), RSSI=-43 dB
+2016-11-22 01:29:40,485 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:29:40,485 - [INFO] [MainThread] (main:35) Match: BLUNO
+2016-11-22 01:29:40,486 - [INFO] [MainThread] (bluno_ble:133) Attempting to connect to sn1_bluno [c4:be:84:28:89:4a]
+2016-11-22 01:29:42,178 - [INFO] [MainThread] (bluno_ble:146) Connected.
+2016-11-22 01:29:43,186 - [INFO] [MainThread] (bluno_ble:77) Bluno: Deployed
+2016-11-22 01:30:25,556 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-22 01:30:25,557 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-22 01:30:35,577 - [INFO] [MainThread] (main:28) Device c4:be:84:28:89:4a (public), RSSI=-41 dB
+2016-11-22 01:30:35,578 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:30:35,579 - [INFO] [MainThread] (main:35) Match: BLUNO
+2016-11-22 01:30:35,580 - [INFO] [MainThread] (bluno_ble:133) Attempting to connect to sn1_bluno [c4:be:84:28:89:4a]
+2016-11-22 01:30:36,340 - [INFO] [MainThread] (bluno_ble:146) Connected.
+2016-11-22 01:30:37,349 - [INFO] [MainThread] (bluno_ble:67) Bluno: Request to undeploy
+2016-11-22 01:30:38,227 - [INFO] [MainThread] (bluno_ble:74) Bluno: Undeployed
+2016-11-22 01:30:39,171 - [INFO] [MainThread] (bluno_ble:77) Bluno: Deployed
+2016-11-22 01:30:39,782 - [INFO] [MainThread] (main:28) Device a0:14:3d:0c:aa:a2 (public), RSSI=-79 dB
+2016-11-22 01:30:39,783 - [INFO] [MainThread] (main:28) Device a0:14:3d:84:1b:34 (public), RSSI=-73 dB
+2016-11-22 01:30:39,784 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:30:39,785 - [INFO] [MainThread] (main:28) Device 66:f0:6d:4c:3c:f0 (random), RSSI=-72 dB
+2016-11-22 01:30:39,786 - [INFO] [MainThread] (main:28) Device 24:4b:03:29:ac:5a (public), RSSI=-104 dB
+2016-11-22 01:30:39,787 - [INFO] [MainThread] (main:28) Device 7a:c9:9d:69:57:78 (random), RSSI=-99 dB
+2016-11-22 01:30:39,788 - [INFO] [MainThread] (main:28) Device 98:e0:d9:8f:2c:d8 (public), RSSI=-71 dB
+2016-11-22 01:30:39,788 - [INFO] [MainThread] (main:28) Device a0:14:3d:a0:56:78 (public), RSSI=-72 dB
+2016-11-22 01:33:26,637 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-22 01:33:26,638 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-22 01:33:36,657 - [INFO] [MainThread] (main:28) Device a0:14:3d:a0:56:78 (public), RSSI=-69 dB
+2016-11-22 01:33:36,658 - [INFO] [MainThread] (main:28) Device a0:14:3d:84:1b:34 (public), RSSI=-71 dB
+2016-11-22 01:33:36,659 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:33:36,660 - [INFO] [MainThread] (main:28) Device 43:fd:06:26:23:6a (random), RSSI=-96 dB
+2016-11-22 01:33:36,661 - [INFO] [MainThread] (main:28) Device c4:be:84:28:89:4a (public), RSSI=-44 dB
+2016-11-22 01:33:36,661 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:33:36,662 - [INFO] [MainThread] (main:35) Match: BLUNO
+2016-11-22 01:33:36,663 - [INFO] [MainThread] (bluno_ble:132) Attempting to connect to sn1_bluno [c4:be:84:28:89:4a]
+2016-11-22 01:33:37,405 - [INFO] [MainThread] (bluno_ble:145) Connected.
+2016-11-22 01:33:38,412 - [INFO] [MainThread] (bluno_ble:74) Bluno: Deployed
+2016-11-22 01:33:40,577 - [INFO] [MainThread] (main:28) Device a0:14:3d:0c:aa:a2 (public), RSSI=-74 dB
+2016-11-22 01:36:48,490 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-22 01:36:48,490 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-22 01:36:58,510 - [INFO] [MainThread] (main:28) Device a0:14:3d:a0:56:78 (public), RSSI=-70 dB
+2016-11-22 01:36:58,512 - [INFO] [MainThread] (main:28) Device c4:be:84:28:89:4a (public), RSSI=-47 dB
+2016-11-22 01:36:58,513 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:36:58,513 - [INFO] [MainThread] (main:35) Match: BLUNO
+2016-11-22 01:36:58,514 - [INFO] [MainThread] (bluno_ble:132) Attempting to connect to sn1_bluno [c4:be:84:28:89:4a]
+2016-11-22 01:37:01,782 - [INFO] [MainThread] (bluno_ble:145) Connected.
+2016-11-22 01:37:02,789 - [INFO] [MainThread] (bluno_ble:74) Bluno: Deployed
+2016-11-22 01:37:05,955 - [INFO] [MainThread] (main:28) Device a0:14:3d:84:1b:34 (public), RSSI=-71 dB
+2016-11-22 01:37:05,956 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:37:05,957 - [INFO] [MainThread] (main:28) Device a0:14:3d:0c:aa:a2 (public), RSSI=-73 dB
+2016-11-22 01:37:05,958 - [INFO] [MainThread] (main:60) MERGED: defaultdict(<class 'dict'>, {'sn1': {'bluno_addr': 'c4:be:84:28:89:4a', 'PH': '10.47', 'BL_TIMESTAMP': '2016-11-22 01:37:05', 'parrot_addr': 'a0:14:3d:84:1b:34'}})
+2016-11-22 01:43:02,864 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-22 01:43:02,865 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-22 01:43:10,635 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-22 01:43:10,636 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-22 01:43:20,657 - [INFO] [MainThread] (main:28) Device c4:be:84:28:89:4a (public), RSSI=-47 dB
+2016-11-22 01:43:20,659 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:43:20,660 - [INFO] [MainThread] (main:35) Match: BLUNO
+2016-11-22 01:43:20,661 - [INFO] [MainThread] (bluno_ble:132) Attempting to connect to sn1_bluno [c4:be:84:28:89:4a]
+2016-11-22 01:43:21,353 - [INFO] [MainThread] (bluno_ble:145) Connected.
+2016-11-22 01:43:22,293 - [INFO] [MainThread] (bluno_ble:74) Bluno: Deployed
+2016-11-22 01:43:25,459 - [INFO] [MainThread] (main:28) Device a0:14:3d:0c:aa:a2 (public), RSSI=-71 dB
+2016-11-22 01:43:25,460 - [INFO] [MainThread] (main:28) Device a0:14:3d:a0:56:78 (public), RSSI=-72 dB
+2016-11-22 01:43:25,461 - [INFO] [MainThread] (main:28) Device a0:14:3d:84:1b:34 (public), RSSI=-71 dB
+2016-11-22 01:43:25,461 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:43:25,462 - [INFO] [MainThread] (main:41) Match: PARROT FLOWER
+2016-11-22 01:43:25,463 - [INFO] [MainThread] (parrot_ble:139) Attempting to connect to sn1_parrot [a0:14:3d:84:1b:34]
+2016-11-22 01:43:36,176 - [ERROR] [MainThread] (parrot_ble:149) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 147, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-22 01:43:42,175 - [ERROR] [MainThread] (parrot_ble:149) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 147, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-22 01:43:52,470 - [INFO] [MainThread] (parrot_ble:150) Connected.
+2016-11-22 01:43:56,719 - [INFO] [MainThread] (parrot_ble:90) Starting sensor readings...
+2016-11-22 01:43:59,237 - [INFO] [MainThread] (main:58) MERGED: defaultdict(<class 'dict'>, {'sn1': {'CAL_ECB': 0.0, 'VWC': 0.1677694730952313, 'SOIL_TEMP': 26.681965378559998, 'PH': '10.12', 'SUNLIGHT': 0.12969122911021727, 'CAL_EC_POROUS': -0.0, 'BL_TIMESTAMP': '2016-11-22 01:43:25', 'bluno_addr': 'c4:be:84:28:89:4a', 'AIR_TEMP': 25.746225305880007, 'CAL_VWC': 0.0694427639245987, 'SOIL_EC': 0.0, 'CAL_AIR_TEMP': 26.686227798461914, 'CAL_DLI': 0.13590790331363678, 'CAL_EA': 1.9062767028808594, 'PF_TIMESTAMP': '2016-11-22 01:43:59', 'BATTERY': 94, 'parrot_addr': 'a0:14:3d:84:1b:34'}})
+2016-11-22 01:58:11,525 - [INFO] [MainThread] (main:21) Program has started..
+2016-11-22 01:58:11,530 - [INFO] [MainThread] (main:24) Scanning for devices...
+2016-11-22 01:58:21,559 - [INFO] [MainThread] (main:28) Device a0:14:3d:a0:56:78 (public), RSSI=-68 dB
+2016-11-22 01:58:21,561 - [INFO] [MainThread] (main:28) Device a0:14:3d:0c:aa:a2 (public), RSSI=-66 dB
+2016-11-22 01:58:21,561 - [INFO] [MainThread] (main:28) Device c4:be:84:28:89:4a (public), RSSI=-48 dB
+2016-11-22 01:58:21,562 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:58:21,563 - [INFO] [MainThread] (main:35) Match: BLUNO
+2016-11-22 01:58:21,564 - [INFO] [MainThread] (bluno_ble:132) Attempting to connect to sn1_bluno [c4:be:84:28:89:4a]
+2016-11-22 01:58:22,597 - [INFO] [MainThread] (bluno_ble:145) Connected.
+2016-11-22 01:59:09,673 - [INFO] [MainThread] (bluno_ble:74) Bluno: Deployed
+2016-11-22 01:59:12,777 - [INFO] [MainThread] (main:28) Device a0:14:3d:84:1b:34 (public), RSSI=-58 dB
+2016-11-22 01:59:12,778 - [INFO] [MainThread] (main:31) Found device match...
+2016-11-22 01:59:12,779 - [INFO] [MainThread] (main:41) Match: PARROT FLOWER
+2016-11-22 01:59:12,780 - [INFO] [MainThread] (parrot_ble:139) Attempting to connect to sn1_parrot [a0:14:3d:84:1b:34]
+2016-11-22 01:59:16,390 - [ERROR] [MainThread] (parrot_ble:149) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 147, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-22 01:59:22,515 - [ERROR] [MainThread] (parrot_ble:149) Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py
+Traceback (most recent call last):
+  File "/home/pi/WSNApp/citas_dryad/dryad/parrot_ble.py", line 147, in setup_conn
+    self.peripheral = Peripheral(self.device, "random")
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 316, in __init__
+    self.connect(deviceAddr.addr, deviceAddr.addrType, deviceAddr.iface)
+  File "/usr/local/lib/python3.4/dist-packages/bluepy/btle.py", line 367, in connect
+    "Failed to connect to peripheral %s, addr type: %s" % (addr, addrType))
+bluepy.btle.BTLEException: Failed to connect to peripheral a0:14:3d:84:1b:34, addr type: public
+2016-11-22 01:59:26,678 - [INFO] [MainThread] (parrot_ble:150) Connected.
+2016-11-22 01:59:30,521 - [INFO] [MainThread] (parrot_ble:90) Starting sensor readings...
+2016-11-22 01:59:32,623 - [INFO] [MainThread] (main:58) MERGED: defaultdict(<class 'dict'>, {'sn1': {'BATTERY': 94, 'PF_TIMESTAMP': '2016-11-22 01:59:32', 'CAL_EA': 1.4985275268554688, 'CAL_ECB': 0.0, 'parrot_addr': 'a0:14:3d:84:1b:34', 'SOIL_TEMP': 26.54860482084, 'CAL_VWC': 0.0, 'PH': '10.35', 'bluno_addr': 'c4:be:84:28:89:4a', 'SOIL_EC': 0.0, 'CAL_EC_POROUS': -0.0, 'AIR_TEMP': 25.65680950644001, 'SUNLIGHT': 0.12969122911021727, 'CAL_AIR_TEMP': 26.596803665161133, 'VWC': 0.0, 'CAL_DLI': 0.13590790331363678, 'BL_TIMESTAMP': '2016-11-22 01:59:12'}})

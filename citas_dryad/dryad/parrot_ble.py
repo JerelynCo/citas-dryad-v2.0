@@ -63,11 +63,12 @@ class Parrot():
 		self.logger = logging.getLogger("main.parrot_ble.Parrot")
 	
 
+	# turning on live measure period, 1s
 	def set_live_measure_period(self):
-		# turning on live measure period, 1s
 		live_measure_ch = self.live_service.getCharacteristics(UUID(CONTROLS["LIVE_MODE_PERIOD"]))[0]
 		live_measure_ch.write(str.encode(self.live_measure_period))
-		
+
+	# toggle of pf led		
 	def switch_led(self, state):
 		led_control_ch = self.live_service.getCharacteristics(UUID(CONTROLS["LED"]))[0]
 		led_control_ch.write(str.encode(state))

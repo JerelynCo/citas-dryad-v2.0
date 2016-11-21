@@ -22,6 +22,21 @@ DEVINFO_CHARS = {
 	"NAME"		: "00002a0000001000800000805f9b34fb"  
 }
 
+QUERY = {
+	"QUNDP"		: "QUNDP;\n",
+	"QDEPL"		: "QDEPL;\n",
+	"QREAD"		: "QREAD;\n",
+}
+
+RESP = {
+	"RDEPL_OK"		: "RDEPL:OK",
+	"RDEPL_ERR"		: "RDEPL:ERR_INV_STATE",
+	"RUNDP_OK"		: "RUNDP:OK",
+	"RUNDP_ERR"		: "RUNDP:ERR_INV_STATE",
+	"RREAD_OK"		: "RREAD:OK",
+	"RDATA_OK"		: "RDATA:pH",
+}
+
 SERIAL_HDL = 37
 
 # Security variables
@@ -30,42 +45,39 @@ DFR_BDR_STR = str(bytearray(b"AT+CURRUART=115200\r\n"))
 
 readings = np.array([])
 reading = None
-isReadingReady, isDeviceReady = [False]*2
+isReadingReady, isDeviceReady, isReceived = [False]*3
 
 class PeripheralDelegate(DefaultDelegate):
 	def __init__(self, serial_ch):
 		DefaultDelegate.__init__(self)
 		self.serial_ch = serial_ch
 		self.logger = logging.getLogger("main.bluno_ble.PeripheralDelegate")
-	def handleNotification(self, cHandle, data):
-		global readings
-		global reading
-		global isDeviceReady
-		global isReadingReady
-	
-		data = str(data)
+	def handleNotification(self, cHandle, response):
+		global readings, reading, isDeviceReady, isReadingReady, isReceived
+		
+		response = str(response)
 		
 		if cHandle is SERIAL_HDL:
-			if "RDEPL:ERR_INV_STATE" in data:
+			if RESP["RDEPL_ERR"] in response:
 				isDeviceReady = False
-				self.serial_ch.write(str.encode("QUNDP;\r\n"))
+				self.serial_ch.write(str.encode(QUERY["QUNDP"]))
 				self.logger.info("Bluno: Request to undeploy")
-			if "RUNDP:ERR_INV_STATE" in data:
+			if RESP["RUNDP_ERR"] in response:
 				isDeviceReady = False
-				self.serial_ch.write(str.encode("QDEPL;\r\n"))
+				self.serial_ch.write(str.encode(QUERY["QDEPL"]))
 				self.logger.info("Bluno: Request to deploy")
-			if "RUNDP:OK" in data:
+			if RESP["RUNDP_OK"] in response:
 				isDeviceReady = False
 				self.logger.info("Bluno: Undeployed")
-			if "RDEPL:OK" in data:
+			if RESP["RDEPL_OK"] in response:
 				isDeviceReady = True
 				self.logger.info("Bluno: Deployed")
-			if "RREAD:OK" in data:
+			if RESP["RREAD_OK"] in response:
 				isReadingReady = True				
-			if "pH" in data:
-				self.logger.info("Bluno: Data Received")
-				reading = data.split("=")[1].split(";")[0].strip()
-				readings = np.append(readings, {"PH": data.split("=")[1].split(";")[0].strip()})
+			if RESP["RDATA_OK"] in response:
+				isReceived = True
+				reading = response.split("=")[1].split(";")[0].strip()
+				readings = np.append(readings, {"PH": response.split("=")[1].split(";")[0].strip()})
 
 class Bluno():
 	def __init__(self, device, name, n_read=3):
@@ -77,10 +89,10 @@ class Bluno():
 
 	# start deployment
 	def start_deploy(self):
-		self.serial_ch.write(str.encode("QDEPL;\r\n"))
+		self.serial_ch.write(str.encode(QUERY["QDEPL"]))
 
 	def stop_deploy(self):
-		self.serial_ch.write(str.encode("QUNDP;\r\n"))
+		self.serial_ch.write(str.encode(QUERY["QUNDP"]))
 
 	def isSuccess(self):
 		return self.isSuccess
@@ -92,17 +104,20 @@ class Bluno():
 	def get_readings(self):
 		return readings
 	
-	# TODO separate to read and stream
+	# TODO Ask why have RDEND? What if streaming?
 	def read_ph(self):
-		while not isReadingReady:
-			self.serial_ch.write(str.encode("QREAD;\n"))
+		while not isReadingReady: # no need to query if reading is ready
+			self.serial_ch.write(str.encode(QUERY["QREAD"]))
 			if self.peripheral.waitForNotifications(1.0):
 				continue
 			if isReadingReady:
 				break
-		while True:
+		while True: # needs to query every time to update reading
 			if self.peripheral.waitForNotifications(1.0):
-				print(self.add_timestamp({"PH": reading}))
+				continue
+			if isReceived:
+				break
+		return self.add_timestamp({"PH": reading})
 
 	def get_agg_readings(self):
 		aggregated_data = defaultdict(int)
