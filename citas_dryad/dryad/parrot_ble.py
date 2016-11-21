@@ -79,13 +79,14 @@ class Parrot():
 		ver_number = firmware_version.decode("utf-8").split("_")[1].split("-")[1]
 		self.isNewFirmware = ver_number == new_firmware_version
 
-	def add_timestamp(self, data):
+	def add_details(self, data):
 		data["PF_TIMESTAMP"] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+		data["PF_ADDR"] = self.device.addr	
 		return data	
 	
 
 	# returns dictionary of sensor readings from parrot flower 
-	def read_sensors(self, sensors=["SUNLIGHT", "SOIL_EC", "SOIL_TEMP", "AIR_TEMP", "VWC", "CAL_VWC", "CAL_AIR_TEMP", "CAL_DLI", "CAL_EA", "CAL_ECB", "CAL_EC_POROUS", "BATTERY"]):
+	def read_sensors(self, sensors=["SUNLIGHT", "SOIL_EC", "SOIL_TEMP", "AIR_TEMP", "VWC", "CAL_VWC", "CAL_AIR_TEMP", "CAL_DLI", "CAL_EA", "CAL_ECB", "CAL_EC_POROUS", "BATTERY"], isRaw=False):
 		tr = transform.DataTransformation()
 		self.logger.info("Starting sensor readings...")	
 		
@@ -105,36 +106,32 @@ class Parrot():
 		# iterate over the calibrated sensors characteristics
 		for key, val in CAL_SENSORS.items():
 			char = self.live_service.getCharacteristics(UUID(val))[0]	
-			if char.supportsRead(): 
-				if key == "SUNLIGHT":
-					reading[key] = tr.conv_light(tr.unpack_U16(char.read()))
-				elif key == "SOIL_EC":
-					reading[key] = tr.conv_ec(tr.unpack_U16(char.read()))
-				elif key in ["AIR_TEMP", "SOIL_TEMP"]:
-					reading[key] = tr.conv_temp(tr.unpack_U16(char.read()))
-				elif key == "VWC":
-					reading[key] = tr.conv_moisture(tr.unpack_U16(char.read()))
-				else:
-					reading[key] = tr.decode_float32(char.read())
-		
-		return reading	
+			if char.supportsRead():
+				if not isRaw: 
+					if key == "SUNLIGHT":
+						reading[key] = tr.conv_light(tr.unpack_U16(char.read()))
+					elif key == "SOIL_EC":
+						reading[key] = tr.conv_ec(tr.unpack_U16(char.read()))
+					elif key in ["AIR_TEMP", "SOIL_TEMP"]:
+						reading[key] = tr.conv_temp(tr.unpack_U16(char.read()))
+					elif key == "VWC":
+						reading[key] = tr.conv_moisture(tr.unpack_U16(char.read()))
+					else:
+						reading[key] = tr.decode_float32(char.read())
+				
+				if isRaw:
+					if key == "SUNLIGHT":
+						reading[key] = tr.unpack_U16(char.read())
+					elif key == "SOIL_EC":
+						reading[key] = tr.unpack_U16(char.read())
+					elif key in ["AIR_TEMP", "SOIL_TEMP"]:
+						reading[key] = tr.unpack_U16(char.read())
+					elif key == "VWC":
+						reading[key] = tr.unpack_U16(char.read())
+					else:
+						reading[key] = tr.decode_float32(char.read())			
+		return self.add_details(reading)	
 
-	# returns aggregated (averaged) readings
-	def get_agg_readings(self):
-		# getting readings for N_READ times (3 times)		
-		readings = np.array()
-		temp_counter = self.n_read
-		while temp_counter != 0:
-			readings = np.append(readings, self.read_sensors())
-			temp_counter -= 1	
-		
-		aggregated_data = defaultdict(int)
-		for entry in readings:	
-			for key in entry.keys():
-				aggregated_data[key] += float(entry[key])
-		data = {k: v / self.n_read for k, v in aggregated_data.items()} 
-		return self.add_timestamp(data)	
-		
 	def setup_conn(self): 
 		self.logger.info("Attempting to connect to {} [{}]".format(self.name, self.device.addr))
 		

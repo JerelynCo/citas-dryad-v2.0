@@ -4,9 +4,6 @@ from dryad import bluno_ble
 from collections import defaultdict
 from utils import logging
 
-# number of times to read data
-N_READ = 3
-
 # Enable disable flags
 ENABLE = "\x01"
 DISABLE = "\x00"
@@ -42,7 +39,7 @@ def main():
 				pf = parrot_ble.Parrot(device, curr_device["id"] + "_parrot")
 				pf.setup_conn()
 				pf.switch_led(ENABLE)
-				curr_device["data"] = pf.add_timestamp(pf.read_sensors())
+				curr_device["data"] = pf.read_sensors()
 				pf.switch_led(DISABLE)
 				pf.disconnect()
 		elif not device.connectable and device.addr in devices.keys():
@@ -53,7 +50,6 @@ def main():
 	for key, values in devices.items():
 		sn_id = values["id"]
 		merged_data[sn_id].update(values["data"])
-		merged_data[sn_id].update({values["type"]+"_addr": key})
 
 	logger.info("MERGED: {}".format(merged_data))	
 main()

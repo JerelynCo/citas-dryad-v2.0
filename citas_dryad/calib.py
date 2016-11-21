@@ -24,17 +24,19 @@ class Thread (threading.Thread):
 		self.sensor_type = self.entry["type"]
 
 	def run(self):
-		print_time(self.name, 5, self.counter)
+		#print_time(self.name, 5, self.counter)
 		temp_counter = self.counter
 		if self.sensor_type == "bluno":
-			bl = bluno_ble.Bluno(self.device, self.name, N_READ)
-			bl.start()
-			print(bl.add_timestamp(bl.get_readings()))
+			bl = bluno_ble.Bluno(self.device, self.name)
+			bl.setup_conn()
+			while True:
+				print(bl.read_ph(isRaw=True))
 
 		elif self.sensor_type == "parrot":
-			pf = parrot_ble.Parrot(self.device, self.name, N_READ)
-			pf.start()
-			print(pf.add_timestamp(pf.get_agg_readings()))
+			pf = parrot_ble.Parrot(self.device, self.name)
+			pf.setup_conn()
+			while True:
+				print(pf.read_sensors(isRaw=True))
 		print("Exiting " + self.name)
 
 
@@ -45,7 +47,6 @@ def print_time(threadName, delay, counter):
 		time.sleep(delay)
 		print("{}:{}".format(threadName, time.ctime(time.time())))
 		counter -= 1
-
 
 def setup_log():
 	# logger creation

@@ -45,7 +45,7 @@ DFR_BDR_STR = str(bytearray(b"AT+CURRUART=115200\r\n"))
 
 readings = np.array([])
 reading = None
-isReadingReady, isDeviceReady, isReceived = [False]*3
+isReadingReady, isDeviceReady, isReceived, isDataRaw = [False] * 4
 
 class PeripheralDelegate(DefaultDelegate):
 	def __init__(self, serial_ch):
@@ -77,7 +77,9 @@ class PeripheralDelegate(DefaultDelegate):
 			if RESP["RDATA_OK"] in response:
 				isReceived = True
 				reading = response.split("=")[1].split(";")[0].strip()
-				readings = np.append(readings, {"PH": response.split("=")[1].split(";")[0].strip()})
+				if not isDataRaw:
+					reading = float(reading) * 2.2570 + 2.6675 
+				readings = np.append(readings, {"PH": reading})
 
 class Bluno():
 	def __init__(self, device, name, n_read=3):
@@ -97,15 +99,18 @@ class Bluno():
 	def isSuccess(self):
 		return self.isSuccess
 
-	def add_timestamp(self, data):
+	def add_details(self, data):
 		data["BL_TIMESTAMP"] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+		data["BL_ADDR"] = self.device.addr 
 		return data	
 	
 	def get_readings(self):
 		return readings
 	
 	# TODO Ask why have RDEND? What if streaming?
-	def read_ph(self):
+	def read_ph(self, isRaw=False):
+		global isDataRaw
+		isDataRaw = isRaw
 		while not isReadingReady: # no need to query if reading is ready
 			self.serial_ch.write(str.encode(QUERY["QREAD"]))
 			if self.peripheral.waitForNotifications(1.0):
@@ -117,16 +122,7 @@ class Bluno():
 				continue
 			if isReceived:
 				break
-		return self.add_timestamp({"PH": reading})
-
-	def get_agg_readings(self):
-		aggregated_data = defaultdict(int)
-		data = self.get_readings()
-		for entry in data:
-			aggregated_data["PH"] += float(entry["PH"])
-		data = {k: v / self.n_read for k, v in aggregated_data.items()} 
-		return self.add_timestamp(data)		
-		
+		return self.add_details({"PH": reading})
 
 	def setup_conn(self):
 		self.logger.info("Attempting to connect to {} [{}]".format(self.name, self.device.addr))
@@ -140,7 +136,6 @@ class Bluno():
 				self.peripheral = Peripheral(self.device, "random")
 			except Exception as err:
 				self.logger.exception(err)	
-				self.logger.exception("Caught exception: Peripheral connection failed at /usr/local/lib/python3.4/dist-packages/bluepy/btle.py")
 		
 		self.logger.info("Connected.")
 		
