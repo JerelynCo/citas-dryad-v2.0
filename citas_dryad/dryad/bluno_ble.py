@@ -45,8 +45,9 @@ class PeripheralDelegate(DefaultDelegate):
 				self.logger.info("Bluno: Deployed")
 				self.serial_ch.write(str.encode("QREAD;\n"))
 			if "pH" in data:
+				self.logger.info("Bluno: Data Received")
 				readings = np.append(readings, {"PH": data.split("=")[1].split(";")[0].strip()})
-		
+				print(readings)
 
 class Bluno():
 	def __init__(self, device, name, n_read):

@@ -7,7 +7,7 @@ echo "Done."
 
 # Run the main program
 echo "Running program..."
-for i in {0..1};
+for i in {0..2};
 do
     echo "Iteration $i started."
     sudo python3 main.py;
