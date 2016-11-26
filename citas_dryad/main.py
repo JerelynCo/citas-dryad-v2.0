@@ -42,6 +42,7 @@ def main():
 				curr_device["data"] = pf.read_sensors()
 				pf.switch_led(DISABLE)
 				pf.disconnect()
+				
 		elif not device.connectable and device.addr in devices.keys():
 			logger.debug("Not connectable at the moment: " + str(device.addr)
 )

@@ -36,11 +36,17 @@ sudo hciconfig hci0 up
 echo "Installing sqlite3"
 sudo apt-get install sqlite3
 
-# creation and activation of virtual environment with default python interpreter of python3.4
-sudo pip3 install virtualenv
-virtualenv -p /usr/bin/python3 venv
-. venv/bin/activate
-
 # installation of required python modules
 pip3 install -r requirements.txt
+
+echo "Missing: Append to sudo crontab -e.."
+"""
+# periodical shutdowns
+0 9     * * *   root    shutdown -h now
+0 13    * * *   root    shutdown -h now
+0 16    * * *   root    shutdown -h now
+
+# upon reboot
+@reboot  /home/pi/WSNApp/citas_dryad/run.sh &
+"""
 
