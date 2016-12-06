@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="citasdev.ecce.deploy">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <application
+        android:name=".DeployApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".CacheListActivity"
+            android:label="Sink Nodes" />
+
+        <activity
+            android:name=".CacheDetailsActivity"
+            android:label="Sink Node Details" />
+
+        <activity
+            android:name=".SensorListActivity"
+            android:label="Sensor Nodes" />
+
+        <activity
+            android:name=".SensorDetailsActivity"
+            android:label="Sensor Node Details" />
+
+        <activity
+            android:name=".QRCaptureActivity"
+            android:label="Capture QR Code" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+    </application>
+
+</manifest>
