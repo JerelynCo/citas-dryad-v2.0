@@ -19,6 +19,12 @@ import citasdev.ecce.deploy.utils.BTComm;
 import citasdev.ecce.deploy.utils.SensorDetails;
 
 /**
+ * SensorListActivity lists all sensor nodes that are loaded in the Raspberry Pi. It also allows
+ * addition of new sensor node
+ *
+ * Current implementation of updating sensor node takes two steps: delete + add new node. Future
+ * version will improve this feature.
+ *
  * Created by jerelynco on 12/3/16.
  */
 public class SensorListActivity extends ListActivity {
@@ -50,7 +56,6 @@ public class SensorListActivity extends ListActivity {
         setListAdapter(_sensorAdapter);
         ListView sensorList = (ListView) findViewById(android.R.id.list);
 
-
         sensorList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -76,10 +81,12 @@ public class SensorListActivity extends ListActivity {
             if (resultCode == CommonStatusCodes.SUCCESS) {
                 if (data != null) {
                     SensorDetails newSd = data.getParcelableExtra("SDObject");
-                    BTComm btComm = new BTComm("QQRSN:id="+newSd.get_id()+",name="+newSd.get_broadcastName()
-                            +",state="+newSd.get_state()+",site_name="+newSd.get_siteName()+",lat="+newSd.get_lat()
-                            +",lon="+newSd.get_lon()+",updated="+newSd.get_dateUpdated()+";",
-                            _dpApp.get_btDevice(), TAG);
+                    BTComm btComm = new BTComm("QQRSN:name=" + newSd.get_name() +
+                            ",pf_addr=" + newSd.get_pfAddr() + ",bl_addr=" + newSd.get_blAddr() +
+                            ",state=" + newSd.get_state() + ",site_name=" + newSd.get_siteName() +
+                            ",lat=" + newSd.get_lat() + ",lon="+newSd.get_lon() +
+                            ",updated=" + newSd.get_dateUpdated() + ";", _dpApp.get_btDevice(),
+                            TAG);
                     Thread tComm = new Thread(btComm);
                     tComm.start();
                     try {

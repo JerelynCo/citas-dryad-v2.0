@@ -27,7 +27,7 @@
 
         <activity
             android:name=".CacheDetailsActivity"
-            android:label="Sink Node Details" />
+            android:label="Cache Node Details" />
 
         <activity
             android:name=".SensorListActivity"

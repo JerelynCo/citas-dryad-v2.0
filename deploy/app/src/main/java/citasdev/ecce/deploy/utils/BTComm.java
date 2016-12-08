@@ -133,7 +133,7 @@ public class BTComm implements Runnable {
     }
 
     public void sendBtMsg(String msgToSend){
-        UUID uuid = UUID.fromString("94f39d29-7d6d-437d-973b-fba39e49d4ee"); //Standard SerialPortService ID
+        UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb"); //Standard SerialPortService ID
         try {
             _btSocket = _btDevice.createRfcommSocketToServiceRecord(uuid);
             if (!_btSocket.isConnected()){

@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import citasdev.ecce.deploy.utils.BTComm;
 
 /**
+ * CacheListActivity lists all scanned devices for selection
+ *
  * Created by jerelynco on 12/3/16.
  */
 public class CacheListActivity extends ListActivity {
@@ -24,28 +26,27 @@ public class CacheListActivity extends ListActivity {
 
     private ArrayList<String> _alCacheItems = new ArrayList<>();
     private ArrayAdapter<String> _cacheAdapter;
-
     private TextView tvTimeScanned;
 
-    DeployApplication _dpApp;
-    Thread _tComm;
+    private DeployApplication _dpApp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-
-        tvTimeScanned = (TextView) findViewById(R.id.tv_time_scanned);
-
+        // Setting Application
         _dpApp = (DeployApplication) getApplicationContext();
 
+        // Setting timestamp to view
+        tvTimeScanned = (TextView) findViewById(R.id.tv_time_scanned);
         tvTimeScanned.setText(getIntent().getStringExtra("TIMESTAMP"));
 
+        // Since using common xml file with SensorListActivity, must hide "Add Sensor Node" button
         Button btnAddNode = (Button) findViewById(R.id.btn_new_node);
         btnAddNode.setVisibility(View.INVISIBLE);
 
-        // transforming bd_list to string for readability
-        final ArrayList<BluetoothDevice> bd_list = getIntent().getExtras().getParcelableArrayList("BD_DEVICES");
+        // extracting bd_list and transforming bd_list to string for readability
+        final ArrayList<BluetoothDevice> bd_list = getIntent().getExtras().getParcelableArrayList("BD_LIST");
         if (bd_list != null) {
             for (BluetoothDevice bd : bd_list) {
                 _alCacheItems.add(bd.getName() + ": " + bd.getAddress());
@@ -57,6 +58,7 @@ public class CacheListActivity extends ListActivity {
         setListAdapter(_cacheAdapter);
         ListView cacheList = (ListView) findViewById(android.R.id.list);
 
+        // set up click listener
         cacheList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -67,15 +69,16 @@ public class CacheListActivity extends ListActivity {
                         if (String.valueOf(bd.getAddress()).equals(cacheAddr)) {
                             _dpApp.set_btDevice(bd);
 
-                            BTComm _btComm = new BTComm("QSTAT", bd, TAG);
-                            _tComm = new Thread(_btComm);
-                            _tComm.start();
+                            // establishing bluetooth communication -> connect - transmit - receive
+                            BTComm btComm = new BTComm("QSTAT:;", bd, TAG);
+                            Thread tComm = new Thread(btComm);
+                            tComm.start();
 
                             try {
                                 // waiting for the thread to end
-                                _tComm.join();
+                                tComm.join();
                                 Intent intent = new Intent(CacheListActivity.this, CacheDetailsActivity.class);
-                                intent.putExtra("RESPONSE", _btComm.get_sResponseMsg());
+                                intent.putExtra("RESPONSE", btComm.get_sResponseMsg());
                                 startActivity(intent);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
@@ -85,5 +88,6 @@ public class CacheListActivity extends ListActivity {
                 }
             }
         });
+
     }
 }

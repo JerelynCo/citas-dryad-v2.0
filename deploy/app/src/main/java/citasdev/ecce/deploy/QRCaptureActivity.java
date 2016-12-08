@@ -77,6 +77,9 @@ public class QRCaptureActivity extends AppCompatActivity implements GoogleApiCli
     private ScaleGestureDetector scaleGestureDetector;
     private GestureDetector gestureDetector;
 
+    // Application
+    DeployApplication _dpApp;
+
     // location objects
     private Location _lastLocation;
     private GoogleApiClient _googleApiClient;
@@ -93,8 +96,10 @@ public class QRCaptureActivity extends AppCompatActivity implements GoogleApiCli
         boolean autoFocus = getIntent().getBooleanExtra(AutoFocus, false);
         boolean useFlash = getIntent().getBooleanExtra(UseFlash, false);
 
-        // building googleapiclient
-        buildGoogleApiClient();
+        _dpApp = (DeployApplication) getApplicationContext();
+
+        // retrieving googleApiClient
+        _googleApiClient = _dpApp.get_googleApiClient();
 
         // Check for the camera permission before accessing the camera.  If the
         // permission is not granted yet, request permission.
@@ -107,13 +112,6 @@ public class QRCaptureActivity extends AppCompatActivity implements GoogleApiCli
 
         gestureDetector = new GestureDetector(this, new CaptureGestureListener());
         scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
-    }
-
-    protected synchronized void buildGoogleApiClient() {
-        _googleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API).build();
     }
 
     private void accessLocation(){
@@ -253,7 +251,7 @@ public class QRCaptureActivity extends AppCompatActivity implements GoogleApiCli
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        Toast.makeText(this, "Get location!!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Location obtained.", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -388,9 +386,9 @@ public class QRCaptureActivity extends AppCompatActivity implements GoogleApiCli
                 Intent data = new Intent();
                 try {
                     JSONObject json_barcode = new JSONObject(barcode.displayValue);
-                    sd = new SensorDetails(json_barcode.getString("id"),
-                            json_barcode.getString("name"), json_barcode.getString("site_name"),
-                            json_barcode.getString("state"),
+                    sd = new SensorDetails(json_barcode.getString("name"),
+                            json_barcode.getString("pf_addr"),
+                            json_barcode.getString("bl_addr"),
                             String.valueOf(_lastLocation.getLatitude()),
                             String.valueOf(_lastLocation.getLongitude()));
                     data.putExtra("SDObject", sd);

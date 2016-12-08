@@ -10,30 +10,30 @@ import java.util.Date;
  * Created by jerelynco on 9/18/16.
  */
 public class SensorDetails implements Parcelable {
-    private String _id = "";
-    private String _broadcastName = "";
-    private String _state;
+    private String _name = "";
+    private String _state = "";
     private String _siteName = "";
+    private String _pfAddr = "";
+    private String _blAddr = "";
     private String _pfBatt = "";
     private String _blBatt = "";
     private String _lat;
     private String _lon;
     private String _dateUpdated;
 
-    public SensorDetails(String id, String bname, String siteName, String state, String lat, String lon){
-        this._id = id;
-        this._broadcastName = bname;
-        this._siteName = siteName;
-        this._state = state;
+    public SensorDetails(String bname, String pfAddr, String blAddr, String lat, String lon){
+        this._name = bname;
+        this._pfAddr = pfAddr;
+        this._blAddr = blAddr;
         this._dateUpdated = dateAndFormatter();
         this._lat = lat;
         this._lon = lon;
     }
 
-    public SensorDetails(String id, String bName, String siteName, String state, String lat, String lon,
+    public SensorDetails(String bName, String siteName, String state, String lat, String lon,
                          String pfBat, String blBat, String dateUpdated){
-        this._id = id;
-        this._broadcastName = bName;
+
+        this._name = bName;
         this._siteName = siteName;
         this._state = state;
         this._lat = lat;
@@ -68,6 +68,21 @@ public class SensorDetails implements Parcelable {
         this._lon = _lon;
     }
 
+    public String get_pfAddr() {
+        return _pfAddr;
+    }
+
+    public void set_pfAddr(String _pfAddr) {
+        this._pfAddr = _pfAddr;
+    }
+
+    public String get_blAddr() {
+        return _blAddr;
+    }
+
+    public void set_blAddr(String _blAddr) {
+        this._blAddr = _blAddr;
+    }
 
     public String get_blBatt() {
         return _blBatt;
@@ -101,26 +116,18 @@ public class SensorDetails implements Parcelable {
         this._state = _state;
     }
 
-    public String get_broadcastName() {
-        return _broadcastName;
+    public String get_name() {
+        return _name;
     }
 
-    public void set_broadcastName(String _broadcastName) {
-        this._broadcastName = _broadcastName;
-    }
-
-    public String get_id() {
-        return _id;
-    }
-
-    public void set_id(String _id) {
-        this._id = _id;
+    public void set_name(String _name) {
+        this._name = _name;
     }
 
 
     public String dateAndFormatter() {
         Date date = new Date();
-        SimpleDateFormat ft = new SimpleDateFormat("E MM dd, yyyy hh:mm:ss");
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         return ft.format(date).toString();
     }
 
@@ -141,8 +148,7 @@ public class SensorDetails implements Parcelable {
      **/
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(_id);
-        parcel.writeString(_broadcastName);
+        parcel.writeString(_name);
         parcel.writeString(_siteName);
         parcel.writeString(_state);
         parcel.writeString(_lat);
@@ -154,8 +160,7 @@ public class SensorDetails implements Parcelable {
     }
 
     private SensorDetails(Parcel in){
-        _id = in.readString();
-        _broadcastName = in.readString();
+        _name = in.readString();
         _siteName = in.readString();
         _state = in.readString();
         _lat = in.readString();
@@ -179,6 +184,6 @@ public class SensorDetails implements Parcelable {
 
     @Override
     public String toString(){
-        return _id;
+        return _name;
     }
 }

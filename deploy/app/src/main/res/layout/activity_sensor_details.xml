@@ -39,20 +39,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sensor Node ID"
-                android:id="@+id/lbl_id"
+                android:text="Sensor Name"
+                android:id="@+id/lbl_sn_name"
+                android:paddingTop="10dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
-            <TextView
+            <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="[xxxx-xxxx]"
-                android:id="@+id/tv_id"
-                android:textSize="20dp"
+                android:id="@+id/et_sn_name"
+                android:textSize="18dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true" />
@@ -62,25 +63,25 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp">
+            android:layout_gravity="center_horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Broadcast Name"
+                android:text="Site Name"
+                android:paddingTop="10dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
-            <TextView
+            <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_bname"
+                android:id="@+id/et_site_name"
                 android:text="[xxxx-xxxx]"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true" />
@@ -204,10 +205,10 @@
                 android:layout_alignParentEnd="true"
                 android:padding="5dp" />
 
-            <EditText
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/et_timestamp"
+                android:id="@+id/tv_timestamp"
                 android:textSize="15dp"
                 android:text="[10121994 asdfsdfa]"
                 android:padding="5dp"
@@ -256,10 +257,10 @@
                 android:layout_alignStart="@+id/lbl_pf_battery"
                 android:padding="5dp" />
 
-            <EditText
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/et_pf_batt"
+                android:id="@+id/tv_pf_batt"
                 android:textSize="15dp"
                 android:text="[100%]"
                 android:layout_above="@+id/lbl_bl_battery"
@@ -267,19 +268,27 @@
                 android:layout_alignParentEnd="true"
                 android:padding="5dp" />
 
-            <EditText
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/et_bl_batt"
+                android:id="@+id/tv_bl_batt"
                 android:textSize="15dp"
                 android:text="[100%]"
                 android:layout_alignBottom="@+id/lbl_bl_battery"
-                android:layout_alignRight="@+id/et_pf_batt"
-                android:layout_alignEnd="@+id/et_pf_batt"
+                android:layout_alignRight="@+id/tv_pf_batt"
+                android:layout_alignEnd="@+id/tv_pf_batt"
                 android:padding="5dp" />
         </RelativeLayout>
     </LinearLayout>
 
+    <Button
+        android:text="Update Details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_update_det"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="updateDetails" />
 
     <Button
         android:layout_width="match_parent"

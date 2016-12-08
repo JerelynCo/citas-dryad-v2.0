@@ -19,7 +19,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * The MainActivity welcomes the user to the deployment application.
+ * The MainActivity welcomes the user to the deployment application. Sets up and
+ * scans bluetooth devices to be sent to the next activity -> CacheListActivity
  *
  * @author jerelynco
  * @version 1.0
@@ -32,35 +33,35 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<BluetoothDevice> _alDevicesList = new ArrayList<BluetoothDevice>();
 
-    BluetoothAdapter mBluetoothAdapter;
-    private ProgressDialog mProgressDlg;
+    private ProgressDialog _progressDlg;
+    private BluetoothAdapter _bluetoothAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        _bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
-        if (mBluetoothAdapter == null) {
+        if (_bluetoothAdapter == null) {
             Log.e(TAG, "Device does not support bluetooth");
         }
 
         // Request for bluetooth permission if not enabled
-        if (!mBluetoothAdapter.isEnabled()) {
+        if (!_bluetoothAdapter.isEnabled()) {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
         }
 
         // Progress dialog when bluetooth scanning
-        mProgressDlg = new ProgressDialog(this);
-        mProgressDlg.setMessage("Scanning...");
-        mProgressDlg.setCancelable(false);
-        mProgressDlg.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+        _progressDlg = new ProgressDialog(this);
+        _progressDlg.setMessage("Scanning...");
+        _progressDlg.setCancelable(false);
+        _progressDlg.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                mBluetoothAdapter.cancelDiscovery();
+                _bluetoothAdapter.cancelDiscovery();
             }
         });
 
@@ -70,41 +71,44 @@ public class MainActivity extends AppCompatActivity {
         filter.addAction(BluetoothDevice.ACTION_FOUND);
         filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
         filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
-        registerReceiver(mReceiver, filter); // Don't forget to unregister during onDestroy
+        registerReceiver(_receiver, filter); // Don't forget to unregister during onDestroy
     }
 
     // Methods for managing received broadcasts from nearby bluetooth-enabled devices
-    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver _receiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
 
             if (BluetoothAdapter.ACTION_STATE_CHANGED.equals(action)) {
                 final int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR);
-
                 if (state == BluetoothAdapter.STATE_ON) {
                     Toast.makeText(MainActivity.this, "Bluetooth Enabled", Toast.LENGTH_SHORT).show();
                 }
-
-            } else if (BluetoothAdapter.ACTION_DISCOVERY_STARTED.equals(action)) {
-                mProgressDlg.show();
+            }
+            else if (BluetoothAdapter.ACTION_DISCOVERY_STARTED.equals(action)) {
+                _progressDlg.show();
                 Toast.makeText(MainActivity.this, "Discovery Started", Toast.LENGTH_SHORT).show();
+            }
 
-            } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
-                mProgressDlg.dismiss();
+            else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
+                _progressDlg.dismiss();
                 Toast.makeText(MainActivity.this, "Discovery finished", Toast.LENGTH_SHORT).show();
-
+                // Prepare timestamp when scan finished
                 Date date = new Date();
-                SimpleDateFormat ft = new SimpleDateFormat("E MM dd, yyyy hh:mm:ss");
+                SimpleDateFormat ft = new SimpleDateFormat("yyyy-dd-MM hh:mm:ss");
 
-
+                // Intent including the list of devices scanned and scan timestamp
                 Intent newIntent = new Intent(MainActivity.this, CacheListActivity.class);
-                newIntent.putParcelableArrayListExtra("BD_DEVICES", _alDevicesList);
+                newIntent.putParcelableArrayListExtra("BD_LIST", _alDevicesList);
                 newIntent.putExtra("TIMESTAMP", ft.format(date).toString());
                 startActivity(newIntent);
+            }
 
-            } else if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+            else if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                // Add only devices which contains "RPI" in their bluetooth broadcast name
                 if(device.getName().toLowerCase().contains("rpi")) {
+                    Log.d(TAG, "Found: " + device.getName());
                     _alDevicesList.add(device);
                     Toast.makeText(MainActivity.this, "Found device " + device.getName(), Toast.LENGTH_SHORT).show();
                 }
@@ -114,22 +118,25 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onDestroy(){
-        unregisterReceiver(mReceiver);
+        unregisterReceiver(_receiver);
         super.onDestroy();
     }
 
     @Override
     public void onPause() {
-        if (mBluetoothAdapter != null) {
-            if (mBluetoothAdapter.isDiscovering()) {
-                mBluetoothAdapter.cancelDiscovery();
+        if (_bluetoothAdapter != null) {
+            if (_bluetoothAdapter.isDiscovering()) {
+                _bluetoothAdapter.cancelDiscovery();
             }
         }
         super.onPause();
     }
 
-    // Starts scanning for bluetooth devices
+    /**
+     * scanSinkNodes
+     * @param v view where the method is linked with
+     */
     public void scanSinkNodes(View v){
-        mBluetoothAdapter.startDiscovery();
+        _bluetoothAdapter.startDiscovery();
     }
 }

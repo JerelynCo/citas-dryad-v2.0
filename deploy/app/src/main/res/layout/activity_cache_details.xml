@@ -18,20 +18,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cache ID"
-            android:id="@+id/lbl_id"
+            android:text="Cache Name"
+            android:id="@+id/lbl_name"
+            android:paddingTop="10dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:textSize="20dp"
             android:textStyle="bold" />
 
-        <TextView
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="[xxxx-xxxx]"
-            android:id="@+id/tv_id"
-            android:textSize="20dp"
+            android:id="@+id/et_name"
+            android:textSize="18dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true" />
@@ -117,7 +118,6 @@
             android:textSize="15dp"
             android:text="[0000]"
             android:layout_centerVertical="true"
-
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:padding="5dp" />
@@ -212,6 +212,15 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Update Details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_update_det"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="updateDetails" />
 
     <Button
         android:text="Sensors List"
