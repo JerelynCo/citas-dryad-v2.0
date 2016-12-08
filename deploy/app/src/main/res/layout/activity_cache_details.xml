@@ -231,4 +231,13 @@
         android:layout_alignParentEnd="true"
         android:onClick="displaySensors" />
 
+    <Button
+        android:text="Turn off"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_power_down"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="turnOff" />
+
 </LinearLayout>

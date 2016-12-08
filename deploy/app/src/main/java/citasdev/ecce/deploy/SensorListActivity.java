@@ -85,7 +85,7 @@ public class SensorListActivity extends ListActivity {
                             ",pf_addr=" + newSd.get_pfAddr() + ",bl_addr=" + newSd.get_blAddr() +
                             ",state=" + newSd.get_state() + ",site_name=" + newSd.get_siteName() +
                             ",lat=" + newSd.get_lat() + ",lon="+newSd.get_lon() +
-                            ",updated=" + newSd.get_dateUpdated() + ";", _dpApp.get_btDevice(),
+                            ";\n", _dpApp.get_btDevice(),
                             TAG);
                     Thread tComm = new Thread(btComm);
                     tComm.start();

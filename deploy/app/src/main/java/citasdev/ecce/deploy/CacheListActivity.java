@@ -70,7 +70,7 @@ public class CacheListActivity extends ListActivity {
                             _dpApp.set_btDevice(bd);
 
                             // establishing bluetooth communication -> connect - transmit - receive
-                            BTComm btComm = new BTComm("QSTAT:;", bd, TAG);
+                            BTComm btComm = new BTComm("QSTAT:;\n", bd, TAG);
                             Thread tComm = new Thread(btComm);
                             tComm.start();
 

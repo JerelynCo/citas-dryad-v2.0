@@ -40,6 +40,7 @@ public class DeployApplication extends Application {
 
     public void populateSensorItemsList(String sResponseMsg) throws JSONException {
         // parse -> _sensorItems = sResponseMsg;
+
         JSONObject obj = new JSONObject(sResponseMsg);
         JSONArray sd_array = obj.getJSONArray("sensor_id");
         for(int i = 0; i < sd_array.length(); i++){

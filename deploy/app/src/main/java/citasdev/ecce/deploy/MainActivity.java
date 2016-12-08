@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Progress dialog when bluetooth scanning
         _progressDlg = new ProgressDialog(this);
-        _progressDlg.setMessage("Scanning...");
+        _progressDlg.setMessage("Scanning nearby Raspberry Pi..");
         _progressDlg.setCancelable(false);
         _progressDlg.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
             @Override

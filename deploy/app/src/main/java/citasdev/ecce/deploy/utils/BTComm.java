@@ -82,6 +82,7 @@ public class BTComm implements Runnable {
 
     @Override
     public void run() {
+        Log.d("BTComm", "Entered run");
         sendBtMsg(_sTransmitMsg);
 
         while(!Thread.currentThread().isInterrupted())

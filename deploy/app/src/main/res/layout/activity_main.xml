@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -10,20 +11,19 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="citasdev.ecce.deploy.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Logo"
-        android:id="@+id/tv_logo"
-        android:layout_marginTop="160dp"
-        android:textSize="50dp"
-        android:layout_gravity="center_horizontal" />
+    <ImageView
+        android:layout_width="264dp"
+        android:layout_height="251dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        app:srcCompat="@mipmap/deploy_icon"
+        android:id="@+id/imageView" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start"
+        android:text="Scan Cache Nodes"
+        android:layout_marginTop="20dp"
         android:id="@+id/b_start"
         android:layout_marginBottom="91dp"
         android:textSize="20dp"

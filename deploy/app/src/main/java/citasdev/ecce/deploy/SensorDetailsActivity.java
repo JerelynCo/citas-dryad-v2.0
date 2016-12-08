@@ -104,7 +104,7 @@ public class SensorDetailsActivity extends AppCompatActivity implements GoogleAp
 
         BTComm btComm = new BTComm("QSUPD:name=" + _etSnName.getText() +
                 ",site_name=" + _etSiteName.getText() + ",state=" + _etState.getText() +
-                ",lat=" + _etLatitude.getText() + ",lon=" + _etLongitude.getText() + ";",
+                ",lat=" + _etLatitude.getText() + ",lon=" + _etLongitude.getText() + ";\n",
                 _dpApp.get_btDevice(), TAG);
         Thread tcomm = new Thread(btComm);
         tcomm.start();
@@ -116,7 +116,7 @@ public class SensorDetailsActivity extends AppCompatActivity implements GoogleAp
     }
     public void deleteNode(View v) throws InterruptedException {
         BTComm btComm = new BTComm("QDLTE:rpi_name=" + _dpApp.get_btDevice().getName() +
-                ",sn_name=" + _sd.get_name() + ";", _dpApp.get_btDevice(), TAG);
+                ",sn_name=" + _sd.get_name() + ";\n", _dpApp.get_btDevice(), TAG);
         Thread tComm = new Thread(btComm);
         tComm.start();
 

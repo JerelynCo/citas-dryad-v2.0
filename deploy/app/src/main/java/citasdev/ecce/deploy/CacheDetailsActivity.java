@@ -75,7 +75,10 @@ public class CacheDetailsActivity extends AppCompatActivity implements GoogleApi
         _cacheDevice = _dpApp.get_btDevice();
 
         _et_cache_name.setText(_cacheDevice.getName());
-        _deviceDetails = getIntent().getStringExtra("RESPONSE");
+
+        _deviceDetails = getIntent().getStringExtra("RESPONSE").split(":", 2)[1];
+
+        Log.d(TAG, _deviceDetails);
 
         buildGoogleApiClient();
         _dpApp.set_googleApiClient(_googleApiClient);
@@ -134,7 +137,7 @@ public class CacheDetailsActivity extends AppCompatActivity implements GoogleApi
         _btComm = new BTComm("QCUPD:name=" + _et_cache_name.getText() +
                 ",lat="+String.valueOf(_lastLocation.getLatitude()) +
                 ",lon=" + String.valueOf(_lastLocation.getLongitude()) +
-                ";", _dpApp.get_btDevice(), TAG);
+                ";\n", _dpApp.get_btDevice(), TAG);
         _tComm = new Thread(_btComm);
         _tComm.start();
         _tComm.join();
@@ -145,7 +148,7 @@ public class CacheDetailsActivity extends AppCompatActivity implements GoogleApi
     }
 
     public void displaySensors(View v) throws InterruptedException, JSONException {
-        _btComm = new BTComm("QNLST:;", _dpApp.get_btDevice(), TAG);
+        _btComm = new BTComm("QNLST:;\n", _dpApp.get_btDevice(), TAG);
         _tComm = new Thread(_btComm);
         _tComm.start();
         _tComm.join();
@@ -156,7 +159,7 @@ public class CacheDetailsActivity extends AppCompatActivity implements GoogleApi
         SimpleDateFormat ft = new SimpleDateFormat("E MM dd, yyyy hh:mm:ss");
 
         // parsing of response
-        _dpApp.populateSensorItemsList(_btComm.get_sResponseMsg());
+        _dpApp.populateSensorItemsList(_btComm.get_sResponseMsg().split(":",2)[1]);
 
         Intent intent = new Intent(this, SensorListActivity.class);
         intent.putExtra("TIMESTAMP", ft.format(date).toString());
@@ -165,17 +168,15 @@ public class CacheDetailsActivity extends AppCompatActivity implements GoogleApi
 
     public void activateNode(View v) throws JSONException, InterruptedException {
         if(_isNodeActivated){
-            _btComm = new BTComm("QDEAC", _dpApp.get_btDevice(), TAG);
+            _btComm = new BTComm("QDEAC:;\n", _dpApp.get_btDevice(), TAG);
         }
         else{
-            _btComm = new BTComm("QACTV", _dpApp.get_btDevice(), TAG);
+            _btComm = new BTComm("QACTV:;\n", _dpApp.get_btDevice(), TAG);
         }
 
         _tComm = new Thread(_btComm);
         _tComm.start();
         _tComm.join();
-
-        Log.i(TAG, _btComm.get_sResponseMsg());
 
         if(_btComm.get_sResponseMsg().contains("OK")){
             if(_isNodeActivated){
@@ -191,6 +192,14 @@ public class CacheDetailsActivity extends AppCompatActivity implements GoogleApi
         }
     }
 
+    public void turnOff(View v) throws InterruptedException {
+        accessLocation();
+
+        _btComm = new BTComm("QPWDN;\n", _dpApp.get_btDevice(), TAG);
+        _tComm = new Thread(_btComm);
+        _tComm.start();
+        _tComm.join();
+    }
     @Override
     public void onConnected(@Nullable Bundle bundle) {
         Toast.makeText(this, "Location obtained.", Toast.LENGTH_SHORT).show();
