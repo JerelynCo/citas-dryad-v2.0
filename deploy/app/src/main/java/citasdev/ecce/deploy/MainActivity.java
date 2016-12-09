@@ -107,10 +107,12 @@ public class MainActivity extends AppCompatActivity {
             else if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 // Add only devices which contains "RPI" in their bluetooth broadcast name
-                if(device.getName().toLowerCase().contains("rpi")) {
-                    Log.d(TAG, "Found: " + device.getName());
-                    _alDevicesList.add(device);
-                    Toast.makeText(MainActivity.this, "Found device " + device.getName(), Toast.LENGTH_SHORT).show();
+                if(device.getName() != null) {
+                    if (device.getName().toLowerCase().contains("rpi")) {
+                        Log.d(TAG, "Found: " + device.getName());
+                        _alDevicesList.add(device);
+                        Toast.makeText(MainActivity.this, "Found device " + device.getName(), Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         }

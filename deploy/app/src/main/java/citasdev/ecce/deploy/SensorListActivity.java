@@ -87,11 +87,14 @@ public class SensorListActivity extends ListActivity {
                             ",lat=" + newSd.get_lat() + ",lon="+newSd.get_lon() +
                             ";\n", _dpApp.get_btDevice(),
                             TAG);
+
                     Thread tComm = new Thread(btComm);
                     tComm.start();
                     try {
                         tComm.join();
                         Log.d(TAG, "Joined");
+                        Log.d(TAG, newSd.get_blAddr());
+                        Log.d(TAG, newSd.get_name());
                         _dpApp.addSensorItem(newSd);
                         _sensorItems = _dpApp.get_sensorItems();
                         _sensorAdapter.notifyDataSetChanged();

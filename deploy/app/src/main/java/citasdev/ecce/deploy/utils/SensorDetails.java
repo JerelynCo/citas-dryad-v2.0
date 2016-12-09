@@ -17,30 +17,34 @@ public class SensorDetails implements Parcelable {
     private String _blAddr = "";
     private String _pfBatt = "";
     private String _blBatt = "";
-    private String _lat;
-    private String _lon;
-    private String _dateUpdated;
+    private String _lat = "";
+    private String _lon = "";
+    private String _dateUpdated = "";
 
-    public SensorDetails(String bname, String pfAddr, String blAddr, String lat, String lon){
+    public SensorDetails(String bname, String state, String siteName,
+                         String lat, String lon, String pfAddr,
+                         String blAddr, String pfBatt, String blBatt){
         this._name = bname;
+        this._state = state;
+        this._dateUpdated = dateAndFormatter();
+        this._siteName = siteName;
+        this._lat = lat;
+        this._lon = lon;
+        this._pfAddr = pfAddr;
+        this._blAddr = blAddr;
+        this._pfAddr = pfBatt;
+        this._blAddr = blBatt;
+    }
+
+    public SensorDetails(String bName,  String lat, String lon,
+                         String pfAddr, String blAddr){
+
+        this._name = bName;
+        this._lat = lat;
+        this._lon = lon;
         this._pfAddr = pfAddr;
         this._blAddr = blAddr;
         this._dateUpdated = dateAndFormatter();
-        this._lat = lat;
-        this._lon = lon;
-    }
-
-    public SensorDetails(String bName, String siteName, String state, String lat, String lon,
-                         String pfBat, String blBat, String dateUpdated){
-
-        this._name = bName;
-        this._siteName = siteName;
-        this._state = state;
-        this._lat = lat;
-        this._lon = lon;
-        this._pfBatt = pfBat;
-        this._blBatt = blBat;
-        this._dateUpdated = dateUpdated;
     }
 
     public String get_dateUpdated() {
@@ -155,8 +159,9 @@ public class SensorDetails implements Parcelable {
         parcel.writeString(_lon);
         parcel.writeString(_pfBatt);
         parcel.writeString(_blBatt);
+        parcel.writeString(_pfAddr);
+        parcel.writeString(_blAddr);
         parcel.writeString(_dateUpdated);
-
     }
 
     private SensorDetails(Parcel in){
@@ -167,6 +172,8 @@ public class SensorDetails implements Parcelable {
         _lon = in.readString();
         _pfBatt = in.readString();
         _blBatt = in.readString();
+        _pfAddr = in.readString();
+        _blAddr = in.readString();
         _dateUpdated = in.readString();
     }
 

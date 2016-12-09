@@ -49,8 +49,8 @@ public class CacheDetailsActivity extends AppCompatActivity implements GoogleApi
     private boolean _isNodeActivated = true;
     private JSONObject _jsonDetails;
     private Button _btn_activate;
-    private TextView _tv_state;
-    private EditText _et_cache_name, _et_latitude, _et_longitude;
+    private TextView _tv_state, _tv_cache_name;
+    private EditText _et_latitude, _et_longitude;
 
     // location objects
     private Location _lastLocation;
@@ -61,10 +61,10 @@ public class CacheDetailsActivity extends AppCompatActivity implements GoogleApi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cache_details);
 
-        _et_cache_name = (EditText) findViewById(R.id.et_name);
         _et_latitude = (EditText) findViewById(R.id.et_latitude);
         _et_longitude = (EditText) findViewById(R.id.et_longitude);
         _btn_activate = (Button) findViewById(R.id.btn_activate_node);
+        _tv_cache_name = (TextView) findViewById(R.id.tv_name);
         _tv_state = (TextView) findViewById(R.id.tv_state);
 
         TextView tv_version = (TextView) findViewById(R.id.tv_version);
@@ -74,7 +74,7 @@ public class CacheDetailsActivity extends AppCompatActivity implements GoogleApi
         _dpApp = (DeployApplication) getApplicationContext();
         _cacheDevice = _dpApp.get_btDevice();
 
-        _et_cache_name.setText(_cacheDevice.getName());
+        _tv_cache_name.setText(_cacheDevice.getName().split(" ")[0]);
 
         _deviceDetails = getIntent().getStringExtra("RESPONSE").split(":", 2)[1];
 
@@ -134,7 +134,7 @@ public class CacheDetailsActivity extends AppCompatActivity implements GoogleApi
     public void updateDetails(View v) throws InterruptedException {
         accessLocation();
 
-        _btComm = new BTComm("QCUPD:name=" + _et_cache_name.getText() +
+        _btComm = new BTComm("QCUPD:name=" + _tv_cache_name.getText() +
                 ",lat="+String.valueOf(_lastLocation.getLatitude()) +
                 ",lon=" + String.valueOf(_lastLocation.getLongitude()) +
                 ";\n", _dpApp.get_btDevice(), TAG);
@@ -195,7 +195,7 @@ public class CacheDetailsActivity extends AppCompatActivity implements GoogleApi
     public void turnOff(View v) throws InterruptedException {
         accessLocation();
 
-        _btComm = new BTComm("QPWDN;\n", _dpApp.get_btDevice(), TAG);
+        _btComm = new BTComm("QPWDN:;\n", _dpApp.get_btDevice(), TAG);
         _tComm = new Thread(_btComm);
         _tComm.start();
         _tComm.join();

@@ -387,10 +387,13 @@ public class QRCaptureActivity extends AppCompatActivity implements GoogleApiCli
                 try {
                     JSONObject json_barcode = new JSONObject(barcode.displayValue);
                     sd = new SensorDetails(json_barcode.getString("name"),
-                            json_barcode.getString("pf_addr"),
-                            json_barcode.getString("bl_addr"),
                             String.valueOf(_lastLocation.getLatitude()),
-                            String.valueOf(_lastLocation.getLongitude()));
+                            String.valueOf(_lastLocation.getLongitude()),
+                            json_barcode.getString("pf_addr"),
+                            json_barcode.getString("bl_addr"));
+
+                    Log.d(TAG, sd.get_blAddr());
+                    Log.d(TAG, sd.get_pfAddr());
                     data.putExtra("SDObject", sd);
                     setResult(CommonStatusCodes.SUCCESS, data);
                     finish();

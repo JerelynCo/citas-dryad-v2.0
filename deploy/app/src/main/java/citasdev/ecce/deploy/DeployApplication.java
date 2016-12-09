@@ -40,22 +40,27 @@ public class DeployApplication extends Application {
 
     public void populateSensorItemsList(String sResponseMsg) throws JSONException {
         // parse -> _sensorItems = sResponseMsg;
+        if(!sResponseMsg.equals("")){
+            JSONObject obj = new JSONObject(sResponseMsg);
+            JSONArray sd_array = obj.getJSONArray("sensor_id");
+            for(int i = 0; i < sd_array.length(); i++){
+                JSONObject sd_item = sd_array.getJSONObject(i);
 
-        JSONObject obj = new JSONObject(sResponseMsg);
-        JSONArray sd_array = obj.getJSONArray("sensor_id");
-        for(int i = 0; i < sd_array.length(); i++){
-            JSONObject sd_item = sd_array.getJSONObject(i);
+                String bname = (String) sd_item.get("name");
+                String state = (String) sd_item.get("state");
+                String site_name = (String) sd_item.get("site_name");
+                String lat = (String) sd_item.get("lat");
+                String lon = (String) sd_item.get("lon");
+                String pfAddr = (String) sd_item.get("pf_addr");
+                String blAddr = (String) sd_item.get("bl_addr");
+                String pfBatt = (String) sd_item.get("pf_batt");
+                String blBatt = (String) sd_item.get("bl_batt");
 
-            String bname = (String) sd_item.get("name");
-            String site_name = (String) sd_item.get("site_name");
-            String state = (String) sd_item.get("state");
-            String lat = (String) sd_item.get("lat");
-            String lon = (String) sd_item.get("lon");
-
-            SensorDetails sd = new SensorDetails(bname, site_name, state, lat, lon);
-            _sensorItems.add(sd);
+                SensorDetails sd = new SensorDetails(bname, state, site_name, lat, lon, pfAddr,
+                        blAddr, pfBatt, blBatt);
+                _sensorItems.add(sd);
+            }
         }
-
     }
 
     public ArrayList<SensorDetails> get_sensorItems() {
