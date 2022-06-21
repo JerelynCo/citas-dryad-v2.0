@@ -11,7 +11,7 @@ html5lib==0.999
 lxkeymap==0.1
 mcpi==0.1.1
 ndg-httpsclient==0.3.2
-numpy==1.8.2
+numpy==1.22.0
 picamera==1.12
 pifacecommon==4.2.1
 pifacedigitalio==3.1.0
